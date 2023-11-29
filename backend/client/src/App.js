@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFound from './components/NotFound';
 
 
 const App = () => {
@@ -16,14 +17,14 @@ const App = () => {
         <main className='py-3'>
           <Routes>
             <Route path='/' element={<HomePage/>}/>
-          </Routes>
-          <Routes>
             <Route path='/properties' element={<PropertiesPage/>}/>
+            <Route path='*' element={<NotFound/>} />
           </Routes>
+          <ToastContainer theme="dark" />
         </main>
         <Footer />
       </Router>
-      <ToastContainer theme="dark" />
+      
     </>
   );
 }

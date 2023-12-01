@@ -1,10 +1,24 @@
 import React from 'react'
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import {GiHouse} from 'react-icons/gi';
 import {LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from "react-router-dom";
+import { logout, reset } from "../features/auth/authSlice";
 
 const Header = () => {
-  return (
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const { user } = useSelector((state) => state.auth);
+
+	const logoutHandler = () => {
+		dispatch(logout());
+		dispatch(reset());
+		navigate("/");
+	};
+    return (
     <header>
 			<Navbar
 				fixed="top"
@@ -32,7 +46,7 @@ const Header = () => {
 								<Nav.Link>Properties</Nav.Link>
 							</LinkContainer>
 
-							{/* {user ? (
+							{user ? (
 								<NavDropdown
 									title={
 										user.firstName
@@ -57,7 +71,7 @@ const Header = () => {
 										<FaSignInAlt /> Login
 									</Nav.Link>
 								</LinkContainer>
-							)} */}
+							)}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

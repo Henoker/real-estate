@@ -37,6 +37,10 @@ footer {
 .notfound {
 	margin-top: 20rem;
 }
+
+.form-signin {
+	max-width: 380px;
+}
 h1.notfound {
 	font-size: 7rem;
 }

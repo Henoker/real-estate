@@ -58,25 +58,25 @@ const RegisterPage = () => {
 	return (
 		<>
 			<Title title="Register" />
-			<Container>
+			<Container className="card card-outline-secondary form-signin">
 				<Row>
 					<Col className="mg-top text-center">
-						<section>
+						<div className="card-header">
 							<h1>
 								<FaUser /> Register
 							</h1>
-							<hr className="hr-text" />
-						</section>
+						</div>
 					</Col>
 				</Row>
 
 				{isLoading && <Spinner />}
-				<Row className="mt-3">
+				<Row className="card-body mt-3">
 					<Col className="justify-content-center">
-						<Form onSubmit={submitHandler}>
+						<Form onSubmit={submitHandler} className="form">
 							<Form.Group controlId="username">
-								<Form.Label>Username</Form.Label>
+								<Form.Label className="col-lg-3 col-form-label form-control-label">Username</Form.Label>
 								<Form.Control
+									className="col-lg-9"
 									type="name"
 									placeholder="Enter Username"
 									value={username}

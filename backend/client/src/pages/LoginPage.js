@@ -52,25 +52,23 @@ const LoginPage = () => {
 	return (
 		<>
 			<Title title="login" />
-			<Container>
+			<Container className="card card-outline-secondary form-signin mt-3">
 				<Row>
 					<Col className="mg-top text-center">
-						<section>
-							<h1>
-								<FaSignInAlt /> Login
-							</h1>
-							<hr className="hr-text" />
-						</section>
+							<div class="card-header">
+								<h3 class="mb-0"> <FaSignInAlt />Login</h3>
+                            </div>
 					</Col>
 				</Row>
 
 				{isLoading && <Spinner />}
-				<Row className="mt-3">
+				<Row className="card-body mt-3 ">
 					<Col className="justify-content-center">
 						<Form onSubmit={submitHandler}>
 							<Form.Group controlId="email">
 								<Form.Label>Email Address</Form.Label>
 								<Form.Control
+									className="form-control"
 									type="email"
 									placeholder="Enter Email"
 									value={email}
@@ -93,7 +91,7 @@ const LoginPage = () => {
 							<Button
 								type="submit"
 								variant="primary"
-								className="mt-3"
+								className="btn btn-lg btn-primary btn-block mt-3"
 							>
 								Sign In
 							</Button>
@@ -108,6 +106,32 @@ const LoginPage = () => {
 					</Col>
 				</Row>
 			</Container>
+				
+            {/* <div class="card card-outline-secondary">
+              <div class="card-header">
+                <h3 class="mb-0">Login</h3>
+              </div>
+			  {isLoading && <Spinner />}
+              <div class="card-body">
+                <form onSubmit={submitHandler} autocomplete="off" class="form" id="formLogin" name="formLogin" role="form">
+                  <div class="form-group">
+                    <label for="uname1">Username</label> 
+					<input class="form-control" id="uname1" name="uname1" required="" type="text">
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label> 
+										<input autocomplete="new-password" class="form-control" id="pwd1" required="" type="password">
+                  </div>
+                  <div class="form-check small">
+                    <label class="form-check-label">
+											<input class="form-check-input" type="checkbox"> 
+											<span>Remember me on this computer</span>
+                    </label>
+                  </div>
+									<button class="btn btn-success btn-lg float-right" type="button">Login</button>
+                </form>
+              </div>
+            </div> */}
 		</>
 	);
 };

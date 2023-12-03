@@ -10,6 +10,7 @@ import NotFound from './components/NotFound';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ActivatePage from './pages/ActivatePage';
+import PropertyPage from './pages/PropertyPage';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/properties' element={<PropertiesPage/>}/>
+            <Route path='/property/:id' element={<PropertyPage/>} />
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/activate/:uid/:token' element={<ActivatePage />} />

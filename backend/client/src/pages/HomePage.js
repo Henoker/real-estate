@@ -1,280 +1,143 @@
+// import Slider from 'react-slick';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+import Carousel from 'react-bootstrap/Carousel';
 import React from 'react'
 import { Button, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+
 import Title from '../components/Title';
-import banner from '../images/banner.jpg';
+import pic1 from '../images/slide-1.jpg';
+import pic2 from '../images/slide-2.jpg';
+import pic3 from '../images/slide-3.jpg';
 
 const HomePage = () => {
+  
   return (
     <>
 		<Title />
-        {/* <header className="masthead main-bg-image">
-				<Container className="px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-					<div className="d-flex justify-content-center">
-						<div className="text-center">
-							<h1 className="mx-auto my-0 text-uppercase">
-								Real Estate
-							</h1>
-							<h2 className="text-white-50 mx-auto mt-2 mb-5">
-								The one stop shop for all matters properties.
-								Buy,Rent or sell with us!
-							</h2>
-							<LinkContainer to="/properties">
-								<Button variant="primary">Get Started</Button>
-							</LinkContainer>
-						</div>
-					</div>
-				</Container>
-			</header> */}
-			<div className="slider">
-    <div className="callbacks_container">
-      <ul className="rslides" id="slider">
-        <li>
-          <img src={banner} className="img-responsive" alt="" />
-          <div className="banner_desc">
+    <Carousel data-bs-theme="dark">
+      <Carousel.Item interval={1000}>
+        <img className="d-block w-100 swiper-slide carousel-item-a intro-item bg-image" src={pic1} alt="First slide" />
+        <Carousel.Caption>
+          <h5 className="color-b">First slide label</h5>
+          <p className="intro-title mb-4 text-light">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={1000}>
+        <img className="d-block w-100 swiper-slide carousel-item-a intro-item bg-image" src={pic2} alt="Second slide" />
+        <Carousel.Caption>
+          <h5 className="color-b">Second slide label</h5>
+          <p className="intro-title mb-4 text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={1000}>
+        <img className="d-block w-100 swiper-slide carousel-item-a intro-item bg-image" src={pic3} alt="Third slide" />
+        <Carousel.Caption>
+          <h5 className="color-b">Third slide label</h5>
+          <p className="intro-title mb-4 text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+			{/* <div className="intro intro-carousel swiper ">
+    <div className="swiper-wrapper">
+      <div
+        className="swiper-slide carousel-item-a intro-item bg-image"
+        style={{ backgroundImage: `url(${pic1})`}}
+      >
+        <div className="overlay overlay-a" />
+        <div className="intro-content display-table">
+          <div className="table-cell">
             <div className="container">
-              <h1>Est notare quam littera gothica, quam nunc.</h1>
-              <h2>At wisi enim ad minim veniam, quis nostrud.</h2>
-            </div>
-            {/* <div className="details">
-              <div className="container">
-                <div className="col-xs-10 dropdown-buttons">
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Locations</option>
-                        <option value="null">Business</option>
-                        <option value="AX">First Class</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Property types</option>
-                        <option value="null">House</option>
-                        <option value="AX">Apartment</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All contracts</option>
-                        <option value="null">Sale</option>
-                        <option value="AX">Rent</option>
-                        <option value="AX">Sold</option>
-                      </select>
-                    </div>
+              <div className="row">
+                <div className="col-lg-8">
+                  <div className="intro-body">
+                    <p className="intro-title-top">
+                      Doral, Florida
+                      <br /> 78345
+                    </p>
+                    <h1 className="intro-title mb-4 ">
+                      <span className="color-b">204 </span> Mount
+                      <br /> Olive Road Two
+                    </h1>
+                    <p className="intro-subtitle intro-price">
+                      <a href="#!">
+                        <span className="price-a">rent | $ 12.000</span>
+                      </a>
+                    </p>
                   </div>
                 </div>
-                <div className="col-xs-2 submit_button">
-                  <form>
-                    <input type="submit" defaultValue="Search" />
-                  </form>
-                </div>
-                <div className="clearfix"> </div>
               </div>
-            </div> */}
-          </div>
-        </li>
-        <li>
-          <img src="images/banner1.jpg" className="img-responsive" alt="" />
-          <div className="banner_desc">
-            <div className="container">
-              <h1>Est notare quam littera gothica, quam nunc.</h1>
-              <h2>At wisi enim ad minim veniam, quis nostrud.</h2>
             </div>
-            {/* <div className="details">
-              <div className="container">
-                <div className="col-xs-10 dropdown-buttons">
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Locations</option>
-                        <option value="null">Business</option>
-                        <option value="AX">First Class</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Property types</option>
-                        <option value="null">House</option>
-                        <option value="AX">Apartment</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All contracts</option>
-                        <option value="null">Sale</option>
-                        <option value="AX">Rent</option>
-                        <option value="AX">Sold</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xs-2 submit_button">
-                  <form>
-                    <input type="submit" defaultValue="Search" />
-                  </form>
-                </div>
-                <div className="clearfix"> </div>
-              </div>
-            </div> */}
-          </div>
-        </li>
-        <li>
-          <img src="images/banner2.jpg" className="img-responsive" alt="" />
-          <div className="banner_desc">
-            <div className="container">
-              <h1>Est notare quam littera gothica, quam nunc.</h1>
-              <h2>At wisi enim ad minim veniam, quis nostrud.</h2>
-            </div>
-            {/* <div className="details">
-              <div className="container">
-                <div className="col-xs-10 dropdown-buttons">
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Locations</option>
-                        <option value="null">Business</option>
-                        <option value="AX">First Class</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All Property types</option>
-                        <option value="null">House</option>
-                        <option value="AX">Apartment</option>
-                        <option value="AX">Premium Economy</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-xs-4 dropdown-button">
-                    <div className="section_room">
-                      <select
-                        id="country"
-                        onchange="change_country(this.value)"
-                        className="frm-field required"
-                      >
-                        <option value="null">All contracts</option>
-                        <option value="null">Sale</option>
-                        <option value="AX">Rent</option>
-                        <option value="AX">Sold</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xs-2 submit_button">
-                  <form>
-                    <input type="submit" defaultValue="Search" />
-                  </form>
-                </div>
-                <div className="clearfix"> </div>
-              </div>
-            </div> */}
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  {/* <div className="smart_details">
-    <div className="container">
-      <div className="col-md-10 dropdown-buttons">
-        <div className="col-md-4 dropdown-button">
-          <div className="section_room">
-            <select
-              id="country"
-              onchange="change_country(this.value)"
-              className="frm-field required"
-            >
-              <option value="null">All Locations</option>
-              <option value="null">Business</option>
-              <option value="AX">First Class</option>
-              <option value="AX">Premium Economy</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-md-4 dropdown-button">
-          <div className="section_room">
-            <select
-              id="country"
-              onchange="change_country(this.value)"
-              className="frm-field required"
-            >
-              <option value="null">All Property types</option>
-              <option value="null">House</option>
-              <option value="AX">Apartment</option>
-              <option value="AX">Premium Economy</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-md-4 dropdown-button">
-          <div className="section_room">
-            <select
-              id="country"
-              onchange="change_country(this.value)"
-              className="frm-field required"
-            >
-              <option value="null">All contracts</option>
-              <option value="null">Sale</option>
-              <option value="AX">Rent</option>
-              <option value="AX">Sold</option>
-            </select>
           </div>
         </div>
       </div>
-      <div className="col-md-2 submit_button">
-        <form>
-          <input type="submit" defaultValue="Search" />
-        </form>
+      <div
+        className="swiper-slide carousel-item-a intro-item bg-image"
+        style={{ backgroundImage: `url(${pic2})`}}
+      >
+        <div className="overlay overlay-a" />
+        <div className="intro-content display-table">
+          <div className="table-cell">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8">
+                  <div className="intro-body">
+                    <p className="intro-title-top">
+                      Doral, Florida
+                      <br /> 78345
+                    </p>
+                    <h1 className="intro-title mb-4">
+                      <span className="color-b">204 </span> Rino
+                      <br /> Venda Road Five
+                    </h1>
+                    <p className="intro-subtitle intro-price">
+                      <a href="#1">
+                        <span className="price-a">rent | $ 12.000</span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="clearfix"> </div>
+      <div
+        className="swiper-slide carousel-item-a intro-item bg-image"
+        style={{ backgroundImage: `url(${pic3})`}}
+      >
+        <div className="overlay overlay-a" />
+        <div className="intro-content display-table">
+          <div className="table-cell">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8">
+                  <div className="intro-body">
+                    <p className="intro-title-top">
+                      Doral, Florida
+                      <br /> 78345
+                    </p>
+                    <h1 className="intro-title mb-4">
+                      <span className="color-b">204 </span> Alira
+                      <br /> Roan Road One
+                    </h1>
+                    <p className="intro-subtitle intro-price">
+                      <a href="#1">
+                        <span className="price-a">rent | $ 12.000</span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div className="swiper-pagination" />
   </div> */}
+ 
     </>
   )
 }

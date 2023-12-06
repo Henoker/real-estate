@@ -23,7 +23,9 @@ a:hover {
   text-decoration: none;
 }
 .img-fluid {
-  object-fit: cover;
+  width: 416px; 
+  height: 555px; 
+  object-fit: cover; 
 }
 .link-two {
   color: #000000;

@@ -1,7 +1,12 @@
 import React from 'react'
 import ContactAgent from './ContactAgent'
+import { useSelector } from 'react-redux';
 
-const PropertyDescription = () => {
+const PropertyDescription = ({ property}) => {
+    if (!property) {
+        return null; // Handle case where property is not available yet
+      }
+    
   return (
     <div className="row">
             <div className="col-sm-12">
@@ -13,7 +18,7 @@ const PropertyDescription = () => {
                                     <span className="bi bi-cash">$</span>
                                 </div>
                                 <div className="card-title-c align-self-center">
-                                    <h5 className="title-c">15000</h5>
+                                    <h5 className="title-c">{property.price}</h5>
                                 </div>
                             </div>
                         </div>
@@ -29,39 +34,39 @@ const PropertyDescription = () => {
                                 <ul className="list">
                                     <li className="d-flex justify-content-between">
                                         <strong>Property ID:</strong>
-                                        <span>1134</span>
+                                        <span>{property.id}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Location:</strong>
-                                        <span>Chicago, IL 606543</span>
+                                        <span>{property.location}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Property Type:</strong>
-                                        <span>House</span>
+                                        <span>{property.PropertyType}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Status:</strong>
-                                        <span>Sale</span>
+                                        <span>{property.advert_type}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Area:</strong>
                                         <span>
-                                            340m
+                                        {property.plot_area}
                                             <sup>2</sup>
                                         </span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Beds:</strong>
-                                        <span>4</span>
+                                        <span>{property.bedrooms}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Baths:</strong>
-                                        <span>2</span>
+                                        <span>{property.bathrooms}</span>
                                     </li>
-                                    <li className="d-flex justify-content-between">
+                                    {/* <li className="d-flex justify-content-between">
                                         <strong>Garage:</strong>
                                         <span>1</span>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </div>
@@ -76,19 +81,14 @@ const PropertyDescription = () => {
                         </div>
                         <div className="property-description">
                             <p className="description color-text-a">
-                            Vestibulum ante ipsum primis in faucibus orci luctus et
-                            ultrices posuere cubilia Curae; Donec velit neque, auctor sit
-                            amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies
-                            ligula sed magna dictum porta. Curabitur aliquet quam id dui
-                            posuere blandit. Mauris blandit aliquet elit, eget tincidunt
-                            nibh pulvinar quam id dui posuere blandit.
+                            {property.description}
                         </p>
-                        <p className="description color-text-a no-margin">
+                        {/* <p className="description color-text-a no-margin">
                         Curabitur arcu erat, accumsan id imperdiet et, porttitor at
                         sem. Donec rutrum congue leo eget malesuada. Quisque velit
                         nisi, pretium ut lacinia in, elementum id enim. Donec
                         sollicitudin molestie malesuada.
-                        </p>
+                        </p> */}
                         </div>
                     <div className="row section-t3">
                         <div className="col-sm-12">

@@ -4,9 +4,9 @@ import { FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
 import Title from "../components/Title";
 import { register, reset } from "../features/auth/authSlice";
+import SpinnerComponent from "../components/SpinnerComponent";
 
 const RegisterPage = () => {
 	const [username, setUsername] = useState("");
@@ -69,7 +69,7 @@ const RegisterPage = () => {
 					</Col>
 				</Row>
 
-				{isLoading && <Spinner />}
+				{isLoading && <SpinnerComponent />}
 				<Row className="card-body mt-3">
 					<Col className="justify-content-center">
 						<Form onSubmit={submitHandler} className="form">

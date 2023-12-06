@@ -4,9 +4,9 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
 import Title from "../components/Title";
 import { activate, reset } from "../features/auth/authSlice";
+import SpinnerComponent from "../components/SpinnerComponent";
 
 const ActivatePage = () => {
 	const { uid, token } = useParams();
@@ -53,7 +53,7 @@ const ActivatePage = () => {
 						</section>
 					</Col>
 				</Row>
-				{isLoading && <Spinner />}
+				{isLoading && <SpinnerComponent />}
 				<Row className="mt-3">
 					<Col className="text-center">
 						<Button

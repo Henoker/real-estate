@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { getProperties, reset } from '../features/properties/propertySlice';
+import {useDispatch} from 'react-redux';
+import { useGetPropertiesQuery } from '../services/apiProperties';
 import {toast} from 'react-toastify';
 import Property from '../components/Property';
 import Title from '../components/Title';
@@ -8,21 +8,19 @@ import IntroSingle from '../components/IntroSingle';
 import SpinnerComponent from '../components/SpinnerComponent';
 
 const PropertiesPage = () => {
-  const {properties, isLoading, isError, message} = useSelector((state)=> state.properties)
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if(isError) {
-      toast.error(message, {icon:"🤦‍♂️"})
-    }
-    dispatch(getProperties())
-  }, [dispatch, isError, message]);
+  const { data: apiResponse, error, message, isLoading } = useGetPropertiesQuery();
 
   if (isLoading) {
-    return <SpinnerComponent/>;
+    return <p><SpinnerComponent/></p>;
   }
 
+  if (error) {
+    return toast.error(message, {icon:"🤦‍♂️"});
+  }
+ 
+  const properties = apiResponse && apiResponse.results && Array.isArray(apiResponse.results)
+    ? apiResponse.results
+    : [];
   return (
     <> 
         <Title title="our properties catalog" />

@@ -1,12 +1,15 @@
 import React from 'react'
 import ContactAgent from './ContactAgent'
 import { useSelector } from 'react-redux';
+import { getProperties } from '../features/properties/propertySlice';
 
-const PropertyDescription = ({ property}) => {
-    if (!property) {
-        return null; // Handle case where property is not available yet
-      }
-    
+const PropertyDescription = ({property}) => {
+    const properties = useSelector(getProperties);
+    // if (!property) {
+    //     return null; // Handle case where property is not available yet
+    //   }
+    let singleProperty = properties.find((property) => property.slug === property.singleProperty);
+    console.log(singleProperty)
   return (
     <div className="row">
             <div className="col-sm-12">
@@ -18,7 +21,7 @@ const PropertyDescription = ({ property}) => {
                                     <span className="bi bi-cash">$</span>
                                 </div>
                                 <div className="card-title-c align-self-center">
-                                    <h5 className="title-c">{property.price}</h5>
+                                    {/* <h5 className="title-c">{property.price}</h5> */}
                                 </div>
                             </div>
                         </div>
@@ -32,7 +35,7 @@ const PropertyDescription = ({ property}) => {
                             </div>
                             <div className="summary-list">
                                 <ul className="list">
-                                    <li className="d-flex justify-content-between">
+                                    {/* <li className="d-flex justify-content-between">
                                         <strong>Property ID:</strong>
                                         <span>{property.id}</span>
                                     </li>
@@ -62,7 +65,7 @@ const PropertyDescription = ({ property}) => {
                                     <li className="d-flex justify-content-between">
                                         <strong>Baths:</strong>
                                         <span>{property.bathrooms}</span>
-                                    </li>
+                                    </li> */}
                                     {/* <li className="d-flex justify-content-between">
                                         <strong>Garage:</strong>
                                         <span>1</span>
@@ -81,7 +84,7 @@ const PropertyDescription = ({ property}) => {
                         </div>
                         <div className="property-description">
                             <p className="description color-text-a">
-                            {property.description}
+                            {/* {property.description} */}
                         </p>
                         {/* <p className="description color-text-a no-margin">
                         Curabitur arcu erat, accumsan id imperdiet et, porttitor at

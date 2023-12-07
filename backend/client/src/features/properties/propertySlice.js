@@ -2,9 +2,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import propertyAPIService from './propertyAPIService';
 
+
 const initialState = {
   properties: [],
-  property: {}, // Keep this as an object, not null
+  property: {}, 
   isError: false,
   isLoading: false,
   isSuccess: false,
@@ -23,7 +24,7 @@ export const getProperties = createAsyncThunk('properties/getAll', async (_, thu
   }
 });
 
-export const getPropertyBySlug = createAsyncThunk('property/getBySlug', async (slug, thunkAPI) => {
+export const getPropertyBySlug = createAsyncThunk('property/getSingleProperty', async (slug, thunkAPI) => {
   try {
     return await propertyAPIService.getProperty(slug);
   } catch (error) {
@@ -34,6 +35,8 @@ export const getPropertyBySlug = createAsyncThunk('property/getBySlug', async (s
     return thunkAPI.rejectWithValue(message);
   }
 });
+
+
 
 const propertySlice = createSlice({
   name: 'property',
@@ -62,7 +65,7 @@ const propertySlice = createSlice({
       .addCase(getPropertyBySlug.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.property = action.payload; // Update property instead of properties
+        state.property = action.payload
       })
       .addCase(getPropertyBySlug.rejected, (state, action) => {
         state.isLoading = false;

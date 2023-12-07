@@ -22,7 +22,7 @@ const PropertyPage = () => {
 
   if (error) {
     console.error(error);
-    return <p>Error: {error.message}</p>;
+    return toast.error(error.message, {icon:"🤦‍♂️"})
   }
   // const { property, isLoading, isError, message } = useSelector((state) => state.property);
   // const dispatch = useDispatch();

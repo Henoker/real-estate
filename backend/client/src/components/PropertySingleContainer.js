@@ -5,7 +5,7 @@ import PropertySingleSwiper from './PropertySingleSwiper';
 import PropertyDescription from './PropertyDescription';
 import { useParams } from 'react-router-dom';
 
-const PropertySingleContainer = () => {
+const PropertySingleContainer = ({property}) => {
   // const { properties, isLoading, isError, message } = useSelector((state) => state.properties);
   // const dispatch = useDispatch();
   // const { slug } = useParams();
@@ -32,8 +32,8 @@ const PropertySingleContainer = () => {
   return (
     <section className="property-single nav-arrow-b">
       <div className="container">
-        <PropertySingleSwiper  />
-        <PropertyDescription  />
+        <PropertySingleSwiper property={property}  />
+        <PropertyDescription property={property}  />
       </div>
     </section>
   );

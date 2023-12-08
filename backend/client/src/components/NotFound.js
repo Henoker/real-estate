@@ -1,20 +1,29 @@
 import React from 'react';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FaHeartBroken, FaSadTear} from 'react-icons/fa';
 
 const NotFound = () => {
   return (
-    <Container>
-        <Row>
-            <Col className='text-center'>
-                <h1 className='notfound'>
-                    404 Not Found
-                </h1>
-                <FaHeartBroken className='broken-heart'/>
-                <FaSadTear className='sad-tear'/>
-            </Col>
-        </Row>
-    </Container>
+    <>
+    <div className="d-flex align-items-center justify-content-center vh-100">
+      <div className="text-center">
+        <h1 className="display-1 fw-bold">404</h1>
+        <p className="fs-3">
+          {" "}
+          <span className="text-success">Opps!</span> Page not found.
+        </p>
+        <p className="lead">The page you’re looking for doesn’t exist.</p>
+        <div>
+          <Link to="/" className="btn btn-success">
+            Go Home
+          </Link>
+        </div>
+      
+      </div>
+     
+    </div>
+    </>
+    
   )
 }
 

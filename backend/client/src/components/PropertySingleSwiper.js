@@ -14,7 +14,7 @@ const PropertySingleSwiper = ({property}) => {
              
                 <Carousel.Item >
                   <img
-                    className="d-block w-100 "
+                    className="d-block w-100 img-fluid"
                     src={"http://localhost:8000"+property.cover_photo} // Use the image from the backend
                     alt= "slide1"
                  
@@ -22,13 +22,27 @@ const PropertySingleSwiper = ({property}) => {
                 </Carousel.Item>
                 <Carousel.Item >
                   <img
-                    className="d-block w-100"
+                    className="d-block w-100 img-fluid"
                     src={"http://localhost:8000"+property.photo1} // Use the image from the backend
                     alt= "slide2"
                     
                   />
                 </Carousel.Item>
-           
+                <Carousel.Item >
+                  <img
+                    className="d-block w-100 img-fluid"
+                    src={"http://localhost:8000"+property.photo2} // Use the image from the backend
+                    alt= "slide2"
+                    
+                  />
+                </Carousel.Item>
+                <Carousel.Item >
+                  <img
+                    className="d-block w-100 img-fluid"
+                    src={"http://localhost:8000"+property.photo3} // Use the image from the backend
+                    alt= "slide2"  
+                  />
+                </Carousel.Item>
             </Carousel>
           </div>
         </div>

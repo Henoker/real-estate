@@ -1,7 +1,23 @@
 import React from 'react';
-import agentImg from '../images/a3.jpg';
+// import { useGetProfileDetailsQuery } from '../services/apiProperties';
+// import SpinnerComponent from './SpinnerComponent';
+// import {toast} from 'react-toastify';
 
-const ContactAgent = () => {
+
+const ContactAgent = ({property}) => {
+  // const { data: apiResponse, error, message, isLoading } = useGetProfileDetailsQuery()
+
+  // if (isLoading) {
+  //   return <p><SpinnerComponent/></p>;
+  // }
+
+  // if (error) {
+  //   return toast.error(message, {icon:"🤦‍♂️"});
+  // }
+ 
+  // const properties = apiResponse && apiResponse.results && Array.isArray(apiResponse.results)
+  //   ? apiResponse.results
+  //   : [];
   return (
     <>
     <div className="col-md-12">
@@ -14,11 +30,11 @@ const ContactAgent = () => {
           </div>
           <div className="row">
             <div className="col-md-6 col-lg-4">
-              <img src={agentImg} alt="" className="img-fluid" />
+              <img src={"http://localhost:8000"+property.profile_photo} alt="" className="img-fluid" />
             </div>
             <div className="col-md-6 col-lg-4">
               <div className="property-agent">
-                <h4 className="title-agent">Anabella Geller</h4>
+                <h4 className="title-agent">{property.user.get_full_name}</h4>
                 <p className="color-text-a">
                   Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
                   amet quam vehicula elementum sed sit amet dui. Quisque velit

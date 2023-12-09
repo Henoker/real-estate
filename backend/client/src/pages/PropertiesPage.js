@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import React from 'react';
 import { useGetPropertiesQuery } from '../services/apiProperties';
 import {toast} from 'react-toastify';
 import Property from '../components/Property';

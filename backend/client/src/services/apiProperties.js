@@ -10,8 +10,11 @@ export const api = createApi({
     }),
     getPropertyDetails: builder.query({
         query: (slug) => `properties/details/${slug}/`,
-      }),
+    }),
+    getProfileDetails: builder.query({
+      query: () => 'profile/me/',
+  }),
   }),
 });
 
-export const { useGetPropertiesQuery, useGetPropertyDetailsQuery } = api;
+export const { useGetPropertiesQuery, useGetPropertyDetailsQuery, useGetProfileDetailsQuery } = api;

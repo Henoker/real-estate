@@ -1,7 +1,6 @@
 import React from 'react'
-import ContactAgent from './ContactAgent'
-import { useSelector } from 'react-redux';
-import { getProperties } from '../features/properties/propertySlice';
+
+
 
 const PropertyDescription = ({property}) => {
    
@@ -203,7 +202,7 @@ const PropertyDescription = ({property}) => {
          </div>
             </div> */}
             {/* Contact agent component */}
-            <ContactAgent />
+       
     </div>
   )
 }

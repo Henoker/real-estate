@@ -58,7 +58,166 @@ const RegisterPage = () => {
 	return (
 		<>
 			<Title title="Register" />
-			<Container className="card card-outline-secondary form-signin">
+			<Title title="login" />
+			<section className="">
+    {/* Jumbotron */}
+    <div
+      className="px-4 py-5 px-md-5 text-center text-lg-start"
+      style={{ backgroundColor: "hsl(0, 0%, 96%)" }}
+    >
+      <div className="container mt-5">
+	  {isLoading && <SpinnerComponent />}
+        <div className="row gx-lg-5 align-items-center">
+          <div className="col-lg-6 mb-5 mb-lg-0">
+            <h1 className="my-5 display-3 fw-bold ls-tight">
+              The best offer <br />
+              <span className="text-success">for your business</span>
+            </h1>
+            <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+              itaque accusantium odio, soluta, corrupti aliquam quibusdam
+              tempora at cupiditate quis eum maiores libero veritatis? Dicta
+              facilis sint aliquid ipsum atque?
+            </p>
+          </div>
+          <div className="col-lg-6 mb-5 mb-lg-0">
+            <div className="card">
+              <div className="card-body py-3 px-md-5">
+				<h1 className="fw-bold text-center">Register</h1>
+                <form onSubmit={submitHandler}>
+                  {/* 2 column grid layout with text inputs for the first and last names */}
+                  <div className="row">
+                    <div className="col-md-6 mb-4">
+						<div className="form-outline">
+                        <input
+                          type="name"
+						//   placeholder="Enter First Name"
+						  value={first_name}
+						  onChange={(e) =>
+							  setFirstName(e.target.value)
+						  }
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example2">
+                          First name
+                        </label>
+                        </div>
+                    </div>
+                    <div className="col-md-6 mb-4">
+						<div className="form-outline">
+                        <input
+                          type="name"
+						//   placeholder="Enter Last Name"
+						  value={last_name}
+						  onChange={(e) =>
+							  setLastName(e.target.value)
+						  }
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example1">
+                          Last name
+                        </label>
+                        </div> 
+                    </div>
+                  </div>
+				  <div className="row">
+                    <div className="col-md-6 mb-4">
+					<div className="form-outline">
+                    <input
+                     type="password"
+					//  placeholder="Enter Password"
+					 value={password}
+					 onChange={(e) =>
+						 setPassword(e.target.value)
+					 }
+                      className="form-control"
+                    />
+                    <label className="form-label" htmlFor="form3Example3">
+                      Password
+                    </label>
+                  	  </div>
+                    </div>
+                    <div className="col-md-6 mb-4">
+					  <div className="form-outline">
+                    <input
+                     type="password"
+					 value={re_password}
+					 onChange={(e) =>
+						 setRePassword(e.target.value)
+					 }
+                      className="form-control"
+                    />
+                    <label className="form-label" htmlFor="form3Example3">
+                      Confirm Password
+                    </label>
+                  	  </div>
+                    </div>
+                  </div>
+                  {/* Email input */}
+				  <div className="form-outline mb-4">
+                        <input
+                          type="name"
+						//   placeholder="Enter Username"
+						  value={username}
+						  onChange={(e) =>
+							  setUsername(e.target.value)
+						  }
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example1">
+                          Username
+                        </label>
+                  </div>
+                  {/* Password input */}
+				  <div className="form-outline mb-4">
+                        <input
+                          type="email"
+						//   placeholder="Enter Email"
+						  value={email}
+						  onChange={(e) => setEmail(e.target.value)}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example2">
+                          Email Address
+                        </label>
+                  </div>
+                  {/* Checkbox */}
+                  {/* <div className="form-check d-flex justify-content-center mb-4">
+                    <input
+                      className="form-check-input me-2"
+                      type="checkbox"
+                      defaultValue=""
+                      id="form2Example33"
+                      defaultChecked=""
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="form2Example33"
+                    >
+                      Subscribe to our newsletter
+                    </label>
+                  </div> */}
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    className="btn btn-success btn-block mb-4"
+                  >
+                    Login
+                  </button>
+                  {/* Register buttons */}
+                  <div className="text-left">
+					<p>If you already have an account<Link to="/login" className="text-primary">{'  '}Login Here</Link></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Jumbotron */}
+  </section>
+			{/* <Container className="card card-outline-secondary form-signin">
 				<Row>
 					<Col className="mg-top text-center">
 						<div className="card-header">
@@ -161,7 +320,7 @@ const RegisterPage = () => {
 						<Link to="/login">Login</Link>
 					</Col>
 				</Row>
-			</Container>
+			</Container> */}
 		</>
 	);
 };

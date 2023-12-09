@@ -58,7 +58,6 @@ const RegisterPage = () => {
 	return (
 		<>
 			<Title title="Register" />
-			<Title title="login" />
 			<section className="">
     {/* Jumbotron */}
     <div

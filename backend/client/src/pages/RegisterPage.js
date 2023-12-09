@@ -202,7 +202,7 @@ const RegisterPage = () => {
                     type="submit"
                     className="btn btn-success btn-block mb-4"
                   >
-                    Login
+                    Register
                   </button>
                   {/* Register buttons */}
                   <div className="text-left">

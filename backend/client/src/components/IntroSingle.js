@@ -1,15 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
-const IntroSingle = () => {
+const IntroSingle = ({property}) => {
   return (
     <section className="intro-single">
     <div className="container">
       <div className="row">
         <div className="col-md-12 col-lg-8">
           <div className="title-single-box">
-            <h1 className="title-single">304 Blaster Up</h1>
-            <span className="color-text-a">Chicago, IL 606543</span>
+            <h1 className="title-single">{property.street_address}</h1>
+            <span className="color-text-a">{property.city}, {property.country}</span>
           </div>
         </div>
         <div className="col-md-12 col-lg-4">
@@ -19,13 +20,13 @@ const IntroSingle = () => {
           >
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="breadcrumb-item">
-                <a href="property-grid.html">Properties</a>
+                <Link to="/properties">Properties</Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                304 Blaster Up
+                {property.slug}
               </li>
             </ol>
           </nav>

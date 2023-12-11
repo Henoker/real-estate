@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useGetPropertyDetailsQuery } from '../services/apiProperties';
 import {toast} from 'react-toastify';
 import IntroSingle from "../components/IntroSingle"
@@ -24,27 +24,13 @@ const PropertyPage = () => {
     console.error(error);
     return toast.error(error.message, {icon:"🤦‍♂️"})
   }
-  // const { property, isLoading, isError, message } = useSelector((state) => state.property);
-  // const dispatch = useDispatch();
  
-
-  // useEffect(() => {
-  //   if(isError) {
-  //     toast.error(message, {icon:"🤦‍♂️"})
-  //   }
-  //   dispatch(reset());
-  //   dispatch(getPropertyBySlug());
-  // }, [dispatch, isError, message]);
-
-  // if (isLoading) {
-  //   return <div><SpinnerComponent/></div>;
-  // }
 
   
 
   return (
     <>
-   <IntroSingle/>
+   <IntroSingle property={property}/>
    <PropertySingleContainer property={property} />
    
     

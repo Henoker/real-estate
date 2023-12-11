@@ -31,15 +31,15 @@ const PropertyDescription = ({property}) => {
                                 <ul className="list">
                                     <li className="d-flex justify-content-between">
                                         <strong>Property ID:</strong>
-                                        <span>{property.id}</span>
+                                        <span>{property.ref_code}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Location:</strong>
-                                        <span>{property.location}</span>
+                                        <span>{property.street_address}, {property.city}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Property Type:</strong>
-                                        <span>{property.PropertyType}</span>
+                                        <span>{property.property_type}</span>
                                     </li>
                                     <li className="d-flex justify-content-between">
                                         <strong>Status:</strong>
@@ -60,10 +60,10 @@ const PropertyDescription = ({property}) => {
                                         <strong>Baths:</strong>
                                         <span>{property.bathrooms}</span>
                                     </li> 
-                                     <li className="d-flex justify-content-between">
+                                     {/* <li className="d-flex justify-content-between">
                                         <strong>Garage:</strong>
                                         <span>1</span>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </div>

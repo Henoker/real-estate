@@ -44,6 +44,9 @@ class PropertySerializer(serializers.ModelSerializer):
             "photo2",
             "photo3",
             "photo4",
+            "amenities",
+            "video_url",
+            "ubication",
             "published_status",
             "views",
         ]
@@ -68,6 +71,12 @@ class PropertySerializer(serializers.ModelSerializer):
 
     def get_profile_photo(self, obj):
         return obj.user.profile.profile_photo.url
+    
+    def get_video_url(self, obj):
+        return obj.video_url.url
+    
+    def get_ubication(self, obj):
+        return obj.ubication.url
 
 
 class PropertyCreateSerializer(serializers.ModelSerializer):

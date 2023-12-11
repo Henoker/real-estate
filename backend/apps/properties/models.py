@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
-
+from django.contrib.postgres.fields import ArrayField
 from apps.common.models import TimeStampedUUIDModel
 
 User = get_user_model()
@@ -127,9 +127,26 @@ class Property(TimeStampedUUIDModel):
         null=True,
         blank=True,
     )
+    video_url = models.CharField(
+        max_length=800,
+        null=True,
+        blank=True,
+    )
+    
+    ubication = models.URLField(
+        max_length=800,
+        null=True,
+        blank=True,
+    )
+    
+    amenities = ArrayField(models.CharField(max_length=100), blank=True, null=True)
+  
     published_status = models.BooleanField(
         verbose_name=_("Published Status"), default=False
     )
+    
+    
+    
     views = models.IntegerField(verbose_name=_("Total Views"), default=0)
 
     objects = models.Manager()

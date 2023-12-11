@@ -1,8 +1,13 @@
-import React from 'react'
-
+import React from 'react';
+import { useSelector } from "react-redux";
+import ContactAgent from './ContactAgent';
+import PropertyTabs from './PropertyTabs';
+;
 
 
 const PropertyDescription = ({property}) => {
+
+	const { user } = useSelector((state) => state.auth);
    
   return (
     <div className="row">
@@ -60,10 +65,6 @@ const PropertyDescription = ({property}) => {
                                         <strong>Baths:</strong>
                                         <span>{property.bathrooms}</span>
                                     </li> 
-                                     {/* <li className="d-flex justify-content-between">
-                                        <strong>Garage:</strong>
-                                        <span>1</span>
-                                    </li> */}
                                 </ul>
                             </div>
                         </div>
@@ -80,12 +81,6 @@ const PropertyDescription = ({property}) => {
                             <p className="description color-text-a">
                             {property.description}
                         </p>
-                        {/* <p className="description color-text-a no-margin">
-                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at
-                        sem. Donec rutrum congue leo eget malesuada. Quisque velit
-                        nisi, pretium ut lacinia in, elementum id enim. Donec
-                        sollicitudin molestie malesuada.
-                        </p> */}
                         </div>
                     <div className="row section-t3">
                         <div className="col-sm-12">
@@ -110,97 +105,8 @@ const PropertyDescription = ({property}) => {
                 </div>
                 </div>
             </div>
-            {/* tab for video floor plan and ubication */}
-            {/* <div className="col-md-10 offset-md-1">
-            <ul
-            className="nav nav-pills-a nav-pills mb-3 section-t3"
-            id="pills-tab"
-            role="tablist"
-            >
-                <li className="nav-item">
-                    <a
-                    className="nav-link active"
-                    id="pills-video-tab"
-                    data-bs-toggle="pill"
-                    href="#pills-video"
-                    role="tab"
-                    aria-controls="pills-video"
-                    aria-selected="true"
-                    >
-                        Video
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a
-                    className="nav-link"
-                    id="pills-plans-tab"
-                    data-bs-toggle="pill"
-                    href="#pills-plans"
-                    role="tab"
-                    aria-controls="pills-plans"
-                    aria-selected="false"
-                    >
-                        Floor Plans
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a
-                    className="nav-link"
-                    id="pills-map-tab"
-                    data-bs-toggle="pill"
-                    href="#pills-map"
-                    role="tab"
-                    aria-controls="pills-map"
-                    aria-selected="false"
-                    >
-                        Ubication
-                    </a>
-                </li>
-            </ul>
-            <div className="tab-content" id="pills-tabContent">
-              <div
-              className="tab-pane fade show active"
-              id="pills-video"
-              role="tabpanel"
-              aria-labelledby="pills-video-tab"
-              >
-                <iframe
-                src="https://player.vimeo.com/video/73221098"
-                width="100%"
-                height={460}
-                frameBorder={0}
-                webkitallowfullscreen=""
-                mozallowfullscreen=""
-                allowFullScreen=""
-                title='iframe'
-              />
-            </div>
-            <div
-              className="tab-pane fade"
-              id="pills-plans"
-              role="tabpanel"
-              aria-labelledby="pills-plans-tab"
-            >
-              <img src="assets/img/plan2.jpg" alt="" className="img-fluid" />
-            </div>
-            <div
-              className="tab-pane fade"
-              id="pills-map"
-              role="tabpanel"
-              aria-labelledby="pills-map-tab"
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834"
-                width="100%"
-                height={460}
-                frameBorder={0}
-                style={{ border: 0 }}
-                allowFullScreen=""
-                title='iframe'
-              />
-            </div>
-         </div>
-            </div> */}
+         { user ? <ContactAgent/> : <PropertyTabs /> }
+          
             {/* Contact agent component */}
        
     </div>

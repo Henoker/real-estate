@@ -1,9 +1,7 @@
 import React from 'react'
 // import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+
 import { useDispatch, useSelector } from "react-redux";
-import {GiHouse} from 'react-icons/gi';
-import {LinkContainer} from 'react-router-bootstrap';
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
 
@@ -50,60 +48,6 @@ const Header = () => {
 	);
     return (
     <header>
-			{/* <Navbar
-				fixed="top"
-				expand="lg"
-				collapseOnSelect
-			>
-				<Container>
-					<LinkContainer to="/">
-						<Navbar.Brand>
-							<GiHouse className="nav-icon" /> Real Estate
-						</Navbar.Brand>
-					</LinkContainer>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse
-						id="basic-navbar-nav"
-						className="justify-content-end"
-					>
-						<Nav className="ml-auto">
-							<LinkContainer to="/">
-								<Nav.Link>Home</Nav.Link>
-							</LinkContainer>
-							<LinkContainer to="/properties">
-								<Nav.Link>Properties</Nav.Link>
-							</LinkContainer>
-
-							{user ? (
-								<NavDropdown
-									title={
-										user.firstName
-											? user.firstName
-											: "Welcome"
-									}
-									id="username"
-								>
-									<LinkContainer to="/profile">
-										<NavDropdown.Item>
-											Profile
-										</NavDropdown.Item>
-									</LinkContainer>
-
-									<NavDropdown.Item onClick={logoutHandler}>
-										<FaSignOutAlt /> Logout
-									</NavDropdown.Item>
-								</NavDropdown>
-							) : (
-								<LinkContainer to="/login">
-									<Nav.Link>
-										<FaSignInAlt /> Login
-									</Nav.Link>
-								</LinkContainer>
-							)}
-						</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar> */}
 	  <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div className="container">
       <button
@@ -121,13 +65,6 @@ const Header = () => {
       </button>
       <Link to="/" className="navbar-brand text-brand" >
         {/* Estate<span className="color-b">Agency</span> */}
-		{/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-			<rect x="25" y="40" width="50" height="50" fill="#ffffff"/>
-  			<polygon points="25 40, 50 10, 75 40" fill="#2eca6a"/>
-  			<rect x="45" y="70" width="10" height="20" fill="#f4b400"/>
-  			<rect x="30" y="50" width="15" height="15" fill="#000000"/>
-			<rect x="55" y="50" width="15" height="15" fill="#000000"/>
-		</svg> */}
 		<svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 
 
 const IntroSingle = ({property}) => {
+  if (!property) {
+    return null; 
+  }
   return (
     <section className="intro-single">
     <div className="container">

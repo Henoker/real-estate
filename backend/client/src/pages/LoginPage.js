@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { FaSignInAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -107,7 +105,7 @@ const LoginPage = () => {
                     type="submit"
                     className="btn btn-success btn-block mb-4"
                   >
-                    Sign up
+                    Login
                   </button>
                   {/* Register buttons */}
                   <div className="text-left">

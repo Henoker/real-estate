@@ -1,23 +1,27 @@
 import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
 // import { useGetProfileDetailsQuery } from '../services/apiProperties';
-// import SpinnerComponent from './SpinnerComponent';
-// import {toast} from 'react-toastify';
+import SpinnerComponent from './SpinnerComponent';
+import {toast} from 'react-toastify';
 
 
 const ContactAgent = ({property}) => {
-  // const { data: apiResponse, error, message, isLoading } = useGetProfileDetailsQuery()
+  // const { properties, isLoading, isError, message } = useSelector(
+	// 	(state) => state.properties
+	// );
 
-  // if (isLoading) {
-  //   return <p><SpinnerComponent/></p>;
-  // }
+	// const dispatch = useDispatch();
 
-  // if (error) {
-  //   return toast.error(message, {icon:"🤦‍♂️"});
-  // }
- 
-  // const properties = apiResponse && apiResponse.results && Array.isArray(apiResponse.results)
-  //   ? apiResponse.results
-  //   : [];
+	// useEffect(() => {
+	// 	if (isError) {
+	// 		toast.error(message, { icon: "😭" });
+	// 	}
+	// 	dispatch(getProperties());
+	// }, [dispatch, isError, message]);
+
+	// if (isLoading) {
+	// 	return <SpinnerComponent />;
+	// }
   return (
     <>
     <div className="col-md-12">
@@ -30,14 +34,14 @@ const ContactAgent = ({property}) => {
           </div>
           <div className="row">
             <div className="col-md-6 col-lg-4">
-              <img src={"http://localhost:8000"+property.profile_photo} alt="" className="img-fluid" />
+              {/* <img src={"http://localhost:8000"+property.profile_photo} alt="" className="img-fluid" /> */}
             </div>
             <div className="col-md-6 col-lg-4">
               <div className="property-agent">
-                <h4 className="title-agent">{property.user.get_full_name}</h4>
+                {/* <h4 className="title-agent">{property.user.get_full_name}</h4> */}
                 <p className="color-text-a">
                   Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
-                  amet quam vehicula elementum sed sit amet dui. Quisque velit
+                  amet quam vehicula elementum sed sit amet dui. Quisque velits
                   nisi, pretium ut lacinia in, elementum id enim.
                 </p>
                 <ul className="list-unstyled">

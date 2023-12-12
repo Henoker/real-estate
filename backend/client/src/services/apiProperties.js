@@ -13,8 +13,11 @@ export const api = createApi({
     }),
     getProfileDetails: builder.query({
       query: () => 'profile/me/',
-  }),
+    }),
+    getAllAgents: builder.query({
+      query: () => 'profile/agents/all/',
+    }),
   }),
 });
 
-export const { useGetPropertiesQuery, useGetPropertyDetailsQuery, useGetProfileDetailsQuery } = api;
+export const { useGetPropertiesQuery, useGetPropertyDetailsQuery, useGetProfileDetailsQuery, useGetAllAgentsQuery } = api;

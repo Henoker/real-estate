@@ -29,7 +29,7 @@ const PropertiesPage = () => {
               <div className="container">
                 <div className="row">
                   {properties.map((property) => (
-                    <div className="col-md-4">
+                    <div className="col-md-4 mt-8">
                       <div className="card-box-a card-shadow">
                       <Property property={property} key={property.id} />
                       </div>

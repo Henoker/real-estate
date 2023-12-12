@@ -42,7 +42,7 @@ const HomePage = () => {
               className="swiper-slide carousel-item-a intro-item bg-image w-100"
               src={"http://localhost:8000"+property.cover_photo}
               alt={`Slide ${idx}`}
-              style={{ objectFit: 'cover', height: '550px' }}
+              style={{ objectFit: 'cover', height: '580px' }}
             />
             <Carousel.Caption>
             

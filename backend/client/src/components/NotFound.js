@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHeartBroken, FaSadTear} from 'react-icons/fa';
+
 
 const NotFound = () => {
   return (

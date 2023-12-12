@@ -84,6 +84,33 @@ const RegisterPage = () => {
                 <form onSubmit={submitHandler}>
                   {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
+				  <div className="form-outline mb-4">
+                        <input
+                          type="name"
+						//   placeholder="Enter Username"
+						  value={username}
+						  onChange={(e) =>
+							  setUsername(e.target.value)
+						  }
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example1">
+                          Username
+                        </label>
+                  </div>
+                  {/* Password input */}
+				  <div className="form-outline mb-4">
+                        <input
+                          type="email"
+						//   placeholder="Enter Email"
+						  value={email}
+						  onChange={(e) => setEmail(e.target.value)}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example2">
+                          Email Address
+                        </label>
+                  </div>
                     <div className="col-md-6 mb-4">
 						<div className="form-outline">
                         <input
@@ -151,33 +178,7 @@ const RegisterPage = () => {
                     </div>
                   </div>
                   {/* Email input */}
-				  <div className="form-outline mb-4">
-                        <input
-                          type="name"
-						//   placeholder="Enter Username"
-						  value={username}
-						  onChange={(e) =>
-							  setUsername(e.target.value)
-						  }
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="form3Example1">
-                          Username
-                        </label>
-                  </div>
-                  {/* Password input */}
-				  <div className="form-outline mb-4">
-                        <input
-                          type="email"
-						//   placeholder="Enter Email"
-						  value={email}
-						  onChange={(e) => setEmail(e.target.value)}
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="form3Example2">
-                          Email Address
-                        </label>
-                  </div>
+				  
                   {/* Checkbox */}
                   {/* <div className="form-check d-flex justify-content-center mb-4">
                     <input

@@ -124,6 +124,10 @@ a:hover {
   color: #adadad;
 }
 
+.color-text-white {
+  color: #ffffff;
+}
+
 .color-text-a {
   text-decoration: none;
   color: #555555;

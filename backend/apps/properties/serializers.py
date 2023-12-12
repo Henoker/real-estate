@@ -14,6 +14,7 @@ class PropertySerializer(serializers.ModelSerializer):
     photo2 = serializers.SerializerMethodField()
     photo3 = serializers.SerializerMethodField()
     photo4 = serializers.SerializerMethodField()
+    floor_plan = serializers.SerializerMethodField()
 
     class Meta:
         model = Property
@@ -44,6 +45,7 @@ class PropertySerializer(serializers.ModelSerializer):
             "photo2",
             "photo3",
             "photo4",
+            "floor_plan",
             "amenities",
             "video_url",
             "ubication",
@@ -68,6 +70,9 @@ class PropertySerializer(serializers.ModelSerializer):
 
     def get_photo4(self, obj):
         return obj.photo4.url
+    
+    def get_floor_plan(self, obj):
+        return obj.floor_plan.url
 
     def get_profile_photo(self, obj):
         return obj.user.profile.profile_photo.url

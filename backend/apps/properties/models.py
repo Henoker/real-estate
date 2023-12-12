@@ -139,6 +139,12 @@ class Property(TimeStampedUUIDModel):
         blank=True,
     )
     
+    floor_plan = models.ImageField(
+        default="/interior_sample.jpg",
+        null=True,
+        blank=True,
+    )
+    
     amenities = ArrayField(models.CharField(max_length=100), blank=True, null=True)
   
     published_status = models.BooleanField(

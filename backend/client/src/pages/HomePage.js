@@ -5,6 +5,7 @@ import {toast} from 'react-toastify';
 import SpinnerComponent from '../components/SpinnerComponent';
 
 import Title from '../components/Title';
+import Services from '../components/Services';
 
 
 const HomePage = () => {
@@ -73,6 +74,7 @@ const HomePage = () => {
           </Carousel.Item>
         ))}
       </Carousel>
+      <Services />
   
     </>
   )

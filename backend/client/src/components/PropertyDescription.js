@@ -91,21 +91,19 @@ const PropertyDescription = ({property}) => {
                     </div>
                     <div className="amenities-list color-text-a">
                         <ul className="list-a no-margin">
-                            <li>Balcony</li>
-                            <li>Outdoor Kitchen</li>
-                            <li>Cable Tv</li>
-                            <li>Deck</li>
-                            <li>Tennis Courts</li>
-                            <li>Internet</li>
-                            <li>Parking</li>
-                            <li>Sun Room</li>
-                            <li>Concrete Flooring</li>
+                        {property.amenities && property.amenities.length > 0 ? (
+                            property.amenities.map((amenity, index) => (
+                                <li key={index}>{amenity}</li>
+                            ))
+                        ) : (
+                                <li></li>
+                        )}
                         </ul>
                     </div>
                 </div>
                 </div>
             </div>
-         { user ? <ContactAgent/> : <PropertyTabs /> }
+         { user ? <> <ContactAgent/> <PropertyTabs /></>: <PropertyTabs /> }
           
             {/* Contact agent component */}
        

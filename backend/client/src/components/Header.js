@@ -1,11 +1,9 @@
-import React from 'react'
-// import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
-
+import React, {useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
 
-const Header = () => {
+const Header = () => {  
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -46,9 +44,14 @@ const Header = () => {
 			</li>
 		</>
 	);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
     return (
     <header>
-	  <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+	  <nav className={`navbar navbar-default navbar-trans navbar-expand-lg fixed-top ${isMenuOpen ? 'navbar-open' : ''}`}>
     <div className="container">
       <button
         className="navbar-toggler collapsed"
@@ -56,8 +59,9 @@ const Header = () => {
         data-bs-toggle="collapse"
         data-bs-target="#navbarDefault"
         aria-controls="navbarDefault"
-        aria-expanded="false"
+        aria-expanded={isMenuOpen ? 'true' : 'false'}
         aria-label="Toggle navigation"
+        onClick={toggleMenu}
       >
         <span />
         <span />
@@ -111,8 +115,7 @@ const Header = () => {
 
       </Link>
       <div
-        className="navbar-collapse collapse justify-content-center"
-        id="navbarDefault"
+        className={`navbar-collapse collapse justify-content-center ${isMenuOpen ? 'show' : ''}`} id="navbarDefault"
       >
         <ul className="navbar-nav">
           <li className="nav-item">

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllAgentsPage = () => {
+const AllAgents = () => {
   return (
     <>
   <section className="agents-grid grid">
@@ -424,4 +424,4 @@ const AllAgentsPage = () => {
   )
 }
 
-export default AllAgentsPage
+export default AllAgents

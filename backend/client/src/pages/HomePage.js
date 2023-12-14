@@ -40,10 +40,10 @@ const HomePage = () => {
           <Carousel.Item key={idx} className='swiper-wrapper'>
             <div className="overlay overlay-a" />
             <img
-              className="swiper-slide carousel-item-a intro-item bg-image w-100"
+              className="swiper-slide carousel-item-a intro-item bg-image"
               src={"http://localhost:8000"+property.cover_photo}
               alt={`Slide ${idx}`}
-              style={{ objectFit: 'cover', height: '580px' }}
+              style={{ width: "100%", height: "600px", backgroundSize: 'cover' }}
             />
             <Carousel.Caption>
             

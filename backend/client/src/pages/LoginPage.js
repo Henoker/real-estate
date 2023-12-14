@@ -62,7 +62,7 @@ const LoginPage = () => {
           <div className="col-lg-6 mb-5 mb-lg-0">
             <h1 className="my-5 display-3 fw-bold ls-tight">
               The best offer <br />
-              <span className="text-success">for your business</span>
+              <span className="text-primary">for your business</span>
             </h1>
             <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
@@ -74,6 +74,7 @@ const LoginPage = () => {
           <div className="col-lg-6 mb-5 mb-lg-0">
             <div className="card">
               <div className="card-body py-5 px-md-5">
+                <p className="text-lg-center fa-bold ">Welcome to Relators</p>
 				<h1 className="fw-bold text-center">Login</h1>
                 <form onSubmit={submitHandler}>
                   <div className="form-outline mb-4">
@@ -103,7 +104,7 @@ const LoginPage = () => {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-success btn-block mb-4"
+                    className="btn btn-primary btn-block mb-4"
                   >
                     Login
                   </button>

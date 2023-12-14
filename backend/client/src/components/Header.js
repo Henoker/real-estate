@@ -21,12 +21,20 @@ const Header = () => {
 	const authLinks = (
 		<>
 			<li className='nav-item'>
-				<NavLink className='nav-link' to='/profile'>
+				<NavLink 
+        className='nav-link' 
+        to='/profile'
+        onClick={() => setIsMenuOpen(false)}
+        >
 					Profile
 				</NavLink>
 			</li>
 			<li className='nav-item'>
-				<NavLink className='nav-link' onClick={logoutHandler}>
+				<NavLink 
+        onClick={() => {
+          logoutHandler();
+          setIsMenuOpen(false); 
+        }}>
 					Logout
 				</NavLink>
 			</li>
@@ -36,12 +44,20 @@ const Header = () => {
 	const guestLinks = (
 		<>
 			<li className='nav-item'>
-				<NavLink className='nav-link' to='/login'>
+				<NavLink 
+        className='nav-link' 
+        to='/login'
+        onClick={() => setIsMenuOpen(false)}
+        >
 					Login
 				</NavLink>
 			</li>
 			<li className='nav-item'>
-				<NavLink className='nav-link' to='/register'>
+				<NavLink 
+        className='nav-link' 
+        to='/register'
+        onClick={() => setIsMenuOpen(false)}
+        >
 					Register
 				</NavLink>
 			</li>
@@ -115,7 +131,7 @@ const Header = () => {
           strokeLinecap: "butt",
           strokeLinejoin: "miter",
           strokeMiterlimit: 10,
-          fill: "rgb(46,202,106)",
+          fill: "rgb(18, 102, 227)",
           fillRule: "nonzero",
           opacity: 1
         }}
@@ -132,32 +148,35 @@ const Header = () => {
       >
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link active" to="/">
+            <Link className="nav-link active" to="/" onClick={() => setIsMenuOpen(false)}>
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link " to="/about">
+            <Link className="nav-link " to="/about" onClick={() => setIsMenuOpen(false)}>
               About
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link " to="/properties">
+            <Link className="nav-link " to="/properties" onClick={() => setIsMenuOpen(false)}>
               Property
             </Link>
           </li>
 		  {user ? authLinks : guestLinks}
           <li className="nav-item">
-            <a className="nav-link " href="contact.html">
+            <Link className="nav-link " to="/contact" onClick={() => setIsMenuOpen(false)} >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
       <button
         type="button"
         className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
-        onClick={handleShow}
+        onClick={() => {
+          handleShow();
+          setIsMenuOpen(false); // Close menu on search button click
+        }}
       >
         <BsSearch className="bi bi-search" />
       </button>

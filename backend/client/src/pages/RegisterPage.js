@@ -67,8 +67,8 @@ const RegisterPage = () => {
         <div className="row gx-lg-5 align-items-center">
           <div className="col-lg-6 mb-5 mb-lg-0">
             <h1 className="my-5 display-3 fw-bold ls-tight">
-              The best offer <br />
-              <span className="text-success">for your business</span>
+              Register Here<br />
+              <span className="text-primary"> to get the best offer.</span>
             </h1>
             <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
@@ -176,29 +176,10 @@ const RegisterPage = () => {
                     </label>
                   	  </div>
                     </div>
-                  </div>
-                  {/* Email input */}
-				  
-                  {/* Checkbox */}
-                  {/* <div className="form-check d-flex justify-content-center mb-4">
-                    <input
-                      className="form-check-input me-2"
-                      type="checkbox"
-                      defaultValue=""
-                      id="form2Example33"
-                      defaultChecked=""
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="form2Example33"
-                    >
-                      Subscribe to our newsletter
-                    </label>
-                  </div> */}
-                  {/* Submit button */}
+                  </div>         
                   <button
                     type="submit"
-                    className="btn btn-success btn-block mb-4"
+                    className="btn btn-primary btn-block mb-4"
                   >
                     Register
                   </button>

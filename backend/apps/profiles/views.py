@@ -9,7 +9,7 @@ from .serializers import ProfileSerializer, UpdateProfileSerializer
 
 
 class AgentListAPIView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     queryset = Profile.objects.filter(is_agent=True)
     serializer_class = ProfileSerializer
 
@@ -28,45 +28,49 @@ class AgentListAPIView(generics.ListAPIView):
 
 
 class TopAgentsListAPIView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     queryset = Profile.objects.filter(top_agent=True)
     serializer_class = ProfileSerializer
 
 
 class GetProfileAPIView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     renderer_classes = [ProfileJSONRenderer]
 
-    def get(self, request):
-        user = self.request.user
-        user_profile = Profile.objects.get(user=user)
+    def get(self, request, username):
+        try:
+            user_profile = Profile.objects.get(user__username=username)
+        except Profile.DoesNotExist:
+            raise ProfileNotFound
+
         serializer = ProfileSerializer(user_profile, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+
 class UpdateProfileAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    renderer_classes = [ProfileJSONRenderer]
 
-    serializer_class = UpdateProfileSerializer
-
-    def patch(self, request, username):
+    def get_object(self, username):
         try:
-            Profile.objects.get(user__username=username)
+            return Profile.objects.get(user__username=username)
         except Profile.DoesNotExist:
             raise ProfileNotFound
 
-        user_name = request.user.username
-        if user_name != username:
-            raise NotYourProfile
+    def patch(self, request, username):
+        profile = self.get_object(username)
+        self.check_object_permissions(request, profile)
 
         data = request.data
-        serializer = UpdateProfileSerializer(
-            instance=request.user.profile, data=data, partial=True
-        )
+        serializer = UpdateProfileSerializer(instance=profile, data=data, partial=True)
 
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def delete(self, request, username):
+        profile = self.get_object(username)
+        self.check_object_permissions(request, profile)
 
+        profile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

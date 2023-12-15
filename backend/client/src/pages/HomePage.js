@@ -39,11 +39,15 @@ const HomePage = () => {
         {randomSlides.map((property, idx) => (
           <Carousel.Item key={idx} className='swiper-wrapper'>
             <div className="overlay overlay-a" />
-            <img
+            <div
               className="swiper-slide carousel-item-a intro-item bg-image"
-              src={"http://localhost:8000"+property.cover_photo}
-              alt={`Slide ${idx}`}
-              style={{ width: "100%", height: "600px", backgroundSize: 'cover' }}
+              style={{
+                backgroundImage: `url("http://localhost:8000${property.cover_photo}")`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                width: '100%',
+                height: '600px',
+              }}
             />
             <Carousel.Caption>
             

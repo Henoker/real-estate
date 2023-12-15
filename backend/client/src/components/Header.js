@@ -34,7 +34,9 @@ const Header = () => {
         onClick={() => {
           logoutHandler();
           setIsMenuOpen(false); 
-        }}>
+        }}
+        className='nav-link'
+        >
 					Logout
 				</NavLink>
 			</li>
@@ -61,6 +63,31 @@ const Header = () => {
 					Register
 				</NavLink>
 			</li>
+      <li className="nav-item dropdown">
+  <NavLink
+    className="nav-link dropdown-toggle"
+    to="#"
+    id="navbarDropdown"
+    role="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    Pages
+  </NavLink>
+  <div className="dropdown-menu">
+    <NavLink className="dropdown-item" to="/blog">
+      Blog Single
+    </NavLink>
+    <NavLink className="dropdown-item" to="/agents">
+      Agents Grid
+    </NavLink>
+  </div>
+</li>
+
+
+
+      
 		</>
 	);
 
@@ -189,7 +216,7 @@ const Header = () => {
         <Modal.Body>
         <Form>
           <div className="row">
-          <div className="col-md-12 mb-2">
+            <div className="col-md-12 mb-2">
             <div className="form-group">
               <label className="pb-2" htmlFor="Type">
                 Keyword
@@ -200,8 +227,8 @@ const Header = () => {
                 placeholder="Keyword"
               />
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="Type">
                 Type
@@ -216,8 +243,8 @@ const Header = () => {
                 <option>Open House</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="city">
                 City
@@ -233,8 +260,8 @@ const Header = () => {
                 <option>Colorado</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="bedrooms">
                 Bedrooms
@@ -249,8 +276,8 @@ const Header = () => {
                 <option>03</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="garages">
                 Garages
@@ -266,8 +293,8 @@ const Header = () => {
                 <option>04</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="bathrooms">
                 Bathrooms
@@ -282,8 +309,8 @@ const Header = () => {
                 <option>03</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-6 mb-2">
+            </div>
+            <div className="col-md-6 mb-2">
             <div className="form-group mt-3">
               <label className="pb-2" htmlFor="price">
                 Min Price
@@ -299,14 +326,14 @@ const Header = () => {
                 <option>$200,000</option>
               </select>
             </div>
-          </div>
-          <div className="col-md-12">
+            </div>
+            <div className="col-md-12">
             <button type="submit" className="btn btn-b">
               Search Property
             </button>
+            </div>
           </div>
-        </div>
-          </Form>
+        </Form>
         </Modal.Body>
       </Modal>
 		</header>

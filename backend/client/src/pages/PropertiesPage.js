@@ -3,8 +3,10 @@ import { useGetPropertiesQuery } from '../services/apiProperties';
 import {toast} from 'react-toastify';
 import Property from '../components/Property';
 import Title from '../components/Title';
-import IntroSingle from '../components/IntroSingle';
 import SpinnerComponent from '../components/SpinnerComponent';
+import PropertySearch from '../components/PropertySearch';
+
+
 
 const PropertiesPage = () => {
   const { data: apiResponse, error, message, isLoading } = useGetPropertiesQuery();
@@ -23,13 +25,16 @@ const PropertiesPage = () => {
   return (
     <> 
         <Title title="our properties catalog" />
-        <IntroSingle/>
- 
-              <section className="property-grid grid">
+        
+        
+        <PropertySearch />
+              <div className="property-grid grid">
               <div className="container">
                 <div className="row">
+              
+                
                   {properties.map((property) => (
-                    <div className="col-md-4 mt-8">
+                    <div className="col-md-4">
                       <div className="card-box-a card-shadow">
                       <Property property={property} key={property.id} />
                       </div>
@@ -37,7 +42,7 @@ const PropertiesPage = () => {
 							    ))}
               </div>
               </div>
-              </section>
+              </div>
     
     </>
   )

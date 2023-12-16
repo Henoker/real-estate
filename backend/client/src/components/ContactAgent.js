@@ -1,27 +1,42 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
-// import { useGetProfileDetailsQuery } from '../services/apiProperties';
-import SpinnerComponent from './SpinnerComponent';
+import { useGetPropertyDetailsQuery, useGetAllAgentsQuery } from '../services/apiProperties';
+import SpinnerComponent from '../components/SpinnerComponent';
+
 import {toast} from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 
-const ContactAgent = ({property}) => {
-  // const { properties, isLoading, isError, message } = useSelector(
-	// 	(state) => state.properties
-	// );
+const ContactAgent = () => {
+  const { slug } = useParams();
+  const { data: property, error, isLoading } = useGetPropertyDetailsQuery(slug);
 
-	// const dispatch = useDispatch();
+  const agentUsername = property?.user;
 
-	// useEffect(() => {
-	// 	if (isError) {
-	// 		toast.error(message, { icon: "😭" });
-	// 	}
-	// 	dispatch(getProperties());
-	// }, [dispatch, isError, message]);
+  const { data: allAgents } = useGetAllAgentsQuery() ?? {};
 
-	// if (isLoading) {
-	// 	return <SpinnerComponent />;
-	// }
+  // Find the agent details for the specific user
+  const agentDetails = allAgents.find(agent => agent.username === agentUsername);
+
+  // Use agentDetails?.full_name instead of agentFullName
+  const agentFullName = agentDetails?.full_name || '';
+  const agentEmail = agentDetails?.email || '';
+  const agentPhone = agentDetails?.phone_number|| '';
+  const agentDescription = agentDetails?.about_me || '';
+  const agentImage = agentDetails?.profile_photo || '';
+
+  console.log(agentFullName);
+
+  if (isLoading) {
+    return <p><SpinnerComponent/></p>;
+  }
+
+  if (error) {
+    return toast.error(error.message, { icon: "🤦‍♂️" });
+  }
+
+
+
+	
   return (
     <>
     <div className="col-md-12">
@@ -34,20 +49,21 @@ const ContactAgent = ({property}) => {
           </div>
           <div className="row">
             <div className="col-md-6 col-lg-4">
-              {/* <img src={"http://localhost:8000"+property.profile_photo} alt="" className="img-fluid" /> */}
+              <img src={agentImage} alt="" className="img-fluid" />
             </div>
             <div className="col-md-6 col-lg-4">
               <div className="property-agent">
-                {/* <h4 className="title-agent">{property.user.get_full_name}</h4> */}
+                <h4 className="title-agent">{agentFullName}</h4>
                 <p className="color-text-a">
-                  Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
+                  {/* Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
                   amet quam vehicula elementum sed sit amet dui. Quisque velits
-                  nisi, pretium ut lacinia in, elementum id enim.
+                  nisi, pretium ut lacinia in, elementum id enim. */}
+                  {agentDescription}
                 </p>
                 <ul className="list-unstyled">
                   <li className="d-flex justify-content-between">
                     <strong>Phone:</strong>
-                    <span className="color-text-a">(222) 4568932</span>
+                    <span className="color-text-a">{agentPhone}</span>
                   </li>
                   <li className="d-flex justify-content-between">
                     <strong>Mobile:</strong>
@@ -55,7 +71,7 @@ const ContactAgent = ({property}) => {
                   </li>
                   <li className="d-flex justify-content-between">
                     <strong>Email:</strong>
-                    <span className="color-text-a">annabella@example.com</span>
+                    <span className="color-text-a">{agentEmail}</span>
                   </li>
                   <li className="d-flex justify-content-between">
                     <strong>Skype:</strong>

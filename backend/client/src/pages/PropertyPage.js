@@ -13,7 +13,6 @@ import { useParams } from 'react-router-dom';
 
 const PropertyPage = () => {
   const { slug } = useParams();
-  console.log('Slug:', slug);
   const { data: property, error, isLoading } = useGetPropertyDetailsQuery(slug);
 
   if (isLoading) {

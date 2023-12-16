@@ -103,7 +103,7 @@ const PropertyDescription = ({property}) => {
                 </div>
                 </div>
             </div>
-         { user ? <> <ContactAgent/> <PropertyTabs /></>: <PropertyTabs /> }
+        <ContactAgent/> <PropertyTabs />
           
             {/* Contact agent component */}
        

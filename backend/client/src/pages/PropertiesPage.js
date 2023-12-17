@@ -4,7 +4,9 @@ import {toast} from 'react-toastify';
 import Property from '../components/Property';
 import Title from '../components/Title';
 import SpinnerComponent from '../components/SpinnerComponent';
-import PropertySearch from '../components/PropertySearch';
+
+
+
 
 
 
@@ -26,23 +28,22 @@ const PropertiesPage = () => {
     <> 
         <Title title="our properties catalog" />
         
+   
         
-        <PropertySearch />
-              <div className="property-grid grid">
-              <div className="container">
+              <section className="property-grid grid">
+              <div className="container" >
                 <div className="row">
-              
-                
-                  {properties.map((property) => (
-                    <div className="col-md-4">
+                {properties.map((property) => (
+                <div className="col-md-4 mt-4">
                       <div className="card-box-a card-shadow">
                       <Property property={property} key={property.id} />
                       </div>
-                    </div>
-							    ))}
+                </div>
+							  ))}
               </div>
               </div>
-              </div>
+              </section>
+             
     
     </>
   )

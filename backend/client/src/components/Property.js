@@ -16,7 +16,7 @@ const Property = ({ property }) => {
 					  src={"http://localhost:8000"+property.cover_photo}
 					  alt=""
 					  className="img-a img-fluid"
-					  style={{width: "100%"}}
+					//   style={{width: "100%"}}
 					/>
 				  </div>
 				  <div className="card-overlay">

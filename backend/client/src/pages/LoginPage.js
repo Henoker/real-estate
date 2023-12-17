@@ -50,13 +50,13 @@ const LoginPage = () => {
 	return (
 		<>
 			<Title title="login" />
-			<section className="">
+			<section className="py-(-2)">
     {/* Jumbotron */}
     <div
       className="px-4 py-5 px-md-5 text-center text-lg-start"
       style={{ backgroundColor: "hsl(0, 0%, 96%)" }}
     >
-      <div className="container mt-5">
+      <div className="container">
 	  {isLoading && <SpinnerComponent />}
         <div className="row gx-lg-5 align-items-center">
           <div className="col-lg-6 mb-5 mb-lg-0">

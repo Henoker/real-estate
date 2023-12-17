@@ -1,94 +1,134 @@
-Real Estate App
-This is a real estate application with Django backend and React frontend.
+# Multi User REAL ESTATE web app
 
-Backend
-Django REST Framework API for real estate listings, profiles, authentication etc.
+Welcome to the project!
 
-Key features:
-Django REST Framework
-Django ORM and PostgreSQL database
-Token authentication
-Endpoints for profiles, properties, search etc.
-Features
-Django REST Framework API
-User authentication and registration
-Agent profiles and listings
-Property listings and management
-Search and filtering for properties
-Image uploads for properties
-Django ORM for database models
-Models
-The main models include:
+## Table of Contents
 
-Users - Contains user accounts and authentication
-Profiles - Stores agent profile information like photo, bio, etc.
-Properties - Real estate listings with details like price, description, etc.
-Property Views - Tracks views data for each property
-Endpoints
-The main endpoints cover:
+-   [Introduction](#introduction)
+-   [Features](#features)
+-   [Technologies Used](#technologies-used)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
-Authentication - Register, login, logout
-Profiles - Agent list, retrieve profile, update profile
-Properties - Property list, retrieve, create, update, delete
-Search - Search and filter properties
-Getting Started
-Install dependencies
+## Introduction
 
-pip install -r requirements.txt
+The project is a full-stack real estate web application that allows customers to browse through a wide range of listings, contact the relators, rate relators, and contact the web admin for more info. For relators, it offers a simple and efficient way to list properties, create thier profiles and find customers for thier listings.
 
+This project was developed with scalability, security, and usability in mind. It follows best practices for web development to ensure a robust and stable Real Estate app.
 
+## Features
 
-Run migrations
+-   **User Registration and Authentication**: Users can create accounts, log in securely, and reset their passwords if needed. JWT tokens are used to securely authenticate users.
+-   **Property Listings Catalog**: A rich property listing catalog with categories, property details, and search functionality to help users find what they need easily.
+-   **Agent Rating Capability**: Users can rate relators and view the ratings.
+-   **Property Specific Enquiry for agents**: users can contact the relator directly from the listing page.
+-   **Admin Dashboard**: Realators can manage property listings, track ratings, and view activity statistics through an intuitive admin dashboard.
+-   **Responsive Design**: The website is optimized for various devices, providing a smooth user experience on desktops, tablets, and mobiles.
 
-python manage.py migrate
+## Technologies Used
 
+-   **Front-end**: React js, React-router, React-bootstrap, React-redux, React-toastify, React-router-dom,  React-router-bootstrap, redux/toolkit,RTQuery, React-helmet
+-   **Back-end**: Django, Django-rest-framework, Django-cors-headers, Django-djoser
+-   **Database**: Postgres
+-   **Authentication**: JSON Web Tokens (JWT)
+-   **EMail HOST**: Mailtrap (Test)
 
+## Installation
 
-Run development server
+To run this project locally, follow these steps:
 
-python manage.py runserver
+1. Clone this repository to your local machine.
+2. Navigate to the backend directory.
+3. pip install -r requirements.txt
+4. Navigate to client folder 
 
-
-
-The API will be available at http://127.0.0.1:8000/
-
-Testing
-Run tests
-
-python manage.py test
-
-
-
-API Documentation
-API documentation with endpoints and example requests/responses is available at:
-
-API Docs
-
-Frontend
-React application with Redux Toolkit and RTK Query.
-
-Key features:
-Create React App
-React Router for routing
-RTK Query for API calls
-Redux Toolkit for state management
-React Bootstrap for styling
-Authentication and protected routes
-Property listing and search
-Agent profiles
-Image uploads
-Install and run
-cd client
+```bash
 npm install
+```
+
+1. Set up environment variables:
+   Create a .env file in the root directory and add the necessary configuration:
+
+```dotenv
+# Application secrets:
+SECRET_KEY=
+DEBUG=
+ALLOWED_HOSTS="localhost 127.0.0.1 [::1]"
+
+# Database credentials:
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+
+#SIMPLE_JWT settings:
+SIGNING_KEY=
+
+# Email host
+EMAIL_HOST=
+EMAIL_PORT=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+DOMAIN=localhost:3000
+
+
+
+```
+
+1. Start the application from the backend directory after creating virtual environment:
+
+```bash
+python manage.py migrate
+python manage.py runserver
+```
+
+The backend website will be accessible at http://localhost:8000.
+
+2. Start the application from the frontend client directory:
+
+```bash
 npm start
+```
 
+The frontend main website will be accessible at http://localhost:3000.
 
+## Usage
 
-Frontend will be available at http://localhost:3000
+1. As a Customer:
 
-License
-This project is open source and available under the MIT License.
+-   Sign up or log in to your account.
+-   Browse the property listings and click on items to view their details.
+-   fill out contact form to contact the relator or contact admin in the contact page 
+-   view realotors profile and contact them 
 
+2. As a Relator:
 
+-   Sign up or log in to your account.
+-   Add, update, delete and view property listings.
+-   view, update your own profile.
 
+3. As an Admin:
 
+-   Log in to your admin account.
+-   Manage property listings, relators, and everyting.
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to the project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature/bugfix.
+3. Commit your changes and push the branch to your fork.
+4. Submit a pull request, explaining your changes and their purpose.
+   Please ensure your code follows the project's coding standards and includes appropriate tests.
+
+## License
+
+This project is....
+
+---
+
+I hope you enjoy using this project. If you have any questions or encounter any issues, please don't hesitate to contact me or submit a bug report. Happy coding!

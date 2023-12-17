@@ -410,7 +410,7 @@ const Header = () => {
     </>
   )
   return (
-<Navbar expand="lg" className="bg-body-tertiary">
+<Navbar expand="lg" className="navbar-default">
       <Container fluid>
         <Navbar.Brand >
           <Link to='/'>

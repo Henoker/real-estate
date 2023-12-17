@@ -627,8 +627,9 @@ a:hover {
 .navbar-default {
   transition: all 0.5s ease-in-out;
   background-color: #ffffff;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  margin-bottom: 0;
+  /* padding-top: 28px;
+  padding-bottom: 28px; */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
@@ -1008,7 +1009,7 @@ a:hover {
 
 .intro .carousel-item-a {
   position: relative;
-  height: 100vh;
+  height: 80vh;
 }
 
 .intro .carousel-item-a.bg-image {
@@ -1126,7 +1127,7 @@ a:hover {
 
 /*------/ Intro Single /------*/
 .intro-single {
-  padding: 12rem 0 3rem;
+  padding: 0rem 0 3rem;
 }
 
 @media (max-width: 767px) {

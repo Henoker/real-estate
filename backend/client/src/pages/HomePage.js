@@ -9,79 +9,78 @@ import Services from '../components/Services';
 
 
 const HomePage = () => {
-  
-
-  const { data: apiResponse, error, message, isLoading } = useGetPropertiesQuery();
+  const {
+    data: apiResponse,
+    error,
+    message,
+    isLoading,
+  } = useGetPropertiesQuery();
 
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-  
 
   if (isLoading) {
-    return <p><SpinnerComponent/></p>;
+    return (
+      <p>
+        <SpinnerComponent />
+      </p>
+    );
   }
 
   if (error) {
-    return toast.error(message, {icon:"🤦‍♂️"});
+    return toast.error(message, { icon: "🤦‍♂️" });
   }
- 
-  const randomSlides = apiResponse && apiResponse.results && Array.isArray(apiResponse.results)
-    ? apiResponse.results
-    : [];
-  
+
+  const randomSlides =
+    apiResponse && apiResponse.results && Array.isArray(apiResponse.results)
+      ? apiResponse.results
+      : [];
+
   return (
     <>
-     <Title />
-     <Carousel activeIndex={index} onSelect={handleSelect} className=''>
+      <Title />
+      <Carousel activeIndex={index} onSelect={handleSelect} style={{ height: "500px" }}>
         {randomSlides.map((property, idx) => (
-          <Carousel.Item key={idx} className='swiper-wrapper'>
+          <Carousel.Item key={idx}>
             <div className="overlay overlay-a" />
-            <div
-              className="swiper-slide carousel-item-a intro-item bg-image"
-              style={{
-                backgroundImage: `url("http://localhost:8000${property.cover_photo}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                width: '100%',
-                height: '600px',
-              }}
+            <img
+              className="d-block w-100"
+              src={`http://localhost:8000${property.cover_photo}`}
+              alt="First slide"
+              style={{ height: "500px", objectFit: "cover" }}
             />
             <Carousel.Caption>
-            
-            <div className="intro-content display-table">
-              <div className="table-cell">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-8">
-                      <div className="intro-body">
-                        <p className="intro-title-top">
-                          {property.city}, {property.country}
-                        </p>
-                        <h1 className="intro-title mb-4 color-text-white">
-                          <span className="color-b">{property.property_number} </span> {property.title}
-                        </h1>
-                        <p className="intro-subtitle intro-price">
-                          <a href="#!">
-                            <span className="price-a">{property.advert_type} | ${property.final_property_price}</span>
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              
+              <p>
+                {property.city}, {property.country}
+              </p>
+              <h1
+                style={{
+                  color: "white",
+                  position: "relative",
+                  marginTop: "0px",
+                }}
+              >
+                <span className="color-b">{property.property_number} </span>{" "}
+                {property.title}
+              </h1>
+              <p className="">
+                <a href="#!">
+                  <span className="price-a">
+                    {property.advert_type} | ${property.final_property_price}
+                  </span>
+                </a>
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
       <Services />
-  
     </>
-  )
-}
+  );
+};
 
 export default HomePage

@@ -15,7 +15,7 @@ const ContactAgent = () => {
   const { data: allAgents } = useGetAllAgentsQuery() ?? {};
 
   // Find the agent details for the specific user
-  const agentDetails = allAgents.find(agent => agent.username === agentUsername);
+  const agentDetails = allAgents?.find(agent => agent.username === agentUsername);
 
   // Use agentDetails?.full_name instead of agentFullName
   const agentFullName = agentDetails?.full_name || '';

@@ -59,14 +59,14 @@ const RegisterPage = () => {
 			<section className="">
     {/* Jumbotron */}
     <div
-      className="px-4 py-5 px-md-5 text-center text-lg-start"
+      className="px-4 py-1 px-md-5 text-center text-lg-start"
       style={{ backgroundColor: "hsl(0, 0%, 96%)" }}
     >
       <div className="container">
 	  {isLoading && <SpinnerComponent />}
         <div className="row gx-lg-5 align-items-center">
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <h1 className="my-5 display-3 fw-bold ls-tight">
+            <h1 className="my-5 py-2 display-3 fw-bold ls-tight">
               Register Here<br />
               <span className="text-primary"> to get the best offer.</span>
             </h1>
@@ -78,8 +78,8 @@ const RegisterPage = () => {
             </p>
           </div>
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <div className="card">
-              <div className="card-body py-3 px-md-5">
+            <div className="card mt-0">
+              <div className="card-body py-0 px-md-5">
 				<h1 className="fw-bold text-center">Register</h1>
                 <form onSubmit={submitHandler}>
                   {/* 2 column grid layout with text inputs for the first and last names */}

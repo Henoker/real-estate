@@ -3,9 +3,9 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const SpinnerComponent = () => {
 	return (
-		<>
-		<Spinner animation="border" variant="success" />
-		</>
+		<div className="d-flex justify-content-center">
+		<Spinner animation="border" variant="primary" />
+		</div>
 		
 	);
 };

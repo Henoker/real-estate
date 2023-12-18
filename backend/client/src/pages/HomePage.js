@@ -42,43 +42,63 @@ const HomePage = () => {
   return (
     <>
       <Title />
-      <Carousel activeIndex={index} onSelect={handleSelect} style={{ height: "500px" }}>
+  
+      <Carousel
+        activeIndex={index}
+        onSelect={handleSelect}
+        style={{ height: "500px" }}
+
+      >
+       
         {randomSlides.map((property, idx) => (
           <Carousel.Item key={idx}>
-            <div className="overlay overlay-a" />
-            <img
-              className="d-block w-100"
-              src={`http://localhost:8000${property.cover_photo}`}
-              alt="First slide"
-              style={{ height: "500px", objectFit: "cover" }}
-            />
-            <Carousel.Caption>
-              
-              <p>
+               
+            <div
+              className="swiper-slide carousel-item-a intro-item bg-image"
+              style={{
+                backgroundImage: `url(${"http://localhost:8000"+property.cover_photo})`,
+                height:"90vh"
+              }}
+            >
+        <div className="intro-content display-table">
+          <div className="table-cell">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8">
+                  <div className="intro-body">
+                  {/* <div className='overlay overlay-a'/> */}
+               <p className="intro-title-top">
                 {property.city}, {property.country}
               </p>
-              <h1
-                style={{
-                  color: "white",
-                  position: "relative",
-                  marginTop: "0px",
-                }}
-              >
+              <h1 className="intro-title mb-4 text-bg-light ">
                 <span className="color-b">{property.property_number} </span>{" "}
                 {property.title}
               </h1>
-              <p className="">
+              <p className="intro-subtitle intro-price">
                 <a href="#!">
-                  <span className="price-a">
+                  <span className='price-a'>
                     {property.advert_type} | ${property.final_property_price}
                   </span>
                 </a>
               </p>
-            </Carousel.Caption>
+              </div>
+              </div>
+              </div>
+              </div>
+              </div>
+              </div>
+              
+
+            
+              
+            </div>
           </Carousel.Item>
         ))}
       </Carousel>
       <Services />
+
+
+           
     </>
   );
 };

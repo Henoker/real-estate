@@ -858,6 +858,30 @@ a:hover {
   opacity: 0.9;
 }
 
+.grid_4 {
+  background: #f0f0f0;
+  margin-top: 5em;
+  padding: 1em 0;
+}
+
+.grid_6 h3 {
+  letter-spacing: 0;
+  color: #3d434b;
+  line-height: 70px;
+  font-size:65px;
+  margin-left: 15%;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.banner2 {
+  margin-top: 9px;
+  background: #333;
+}
+.banner2 .btn2, .banner2 h3, .banner2 img {
+  float: left;
+  text-align: left;
+}
 /*======================================
 //--//-->   BOX COLAPSE
 ======================================*/

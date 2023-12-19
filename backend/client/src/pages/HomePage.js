@@ -6,6 +6,7 @@ import SpinnerComponent from '../components/SpinnerComponent';
 
 import Title from '../components/Title';
 import Services from '../components/Services';
+import AgentBanner from '../components/AgentBanner';
 
 
 const HomePage = () => {
@@ -96,6 +97,7 @@ const HomePage = () => {
         ))}
       </Carousel>
       <Services />
+      <AgentBanner />
 
 
            

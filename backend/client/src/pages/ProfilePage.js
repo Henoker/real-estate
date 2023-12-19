@@ -1,445 +1,315 @@
-import React from 'react';
+// import React from 'react';
+// import {
+//   Button,
+//   Card,
+//   Form,
+//   Container,
+//   Row,
+//   Col
+// } from "react-bootstrap";
+// import { useGetProfileDetailsQuery } from "../services/apiProperties";
+// import { toast } from "react-toastify";
+// import SpinnerComponent from "../components/SpinnerComponent";
+// import { useSelector } from 'react-redux';
 
+
+// const ProfilePage = () => {
+
+
+//   return (
+//     <>
+//       <Container fluid>
+//         <Row>
+//           <Col md="8">
+//             <Card>
+//               <Card.Header>
+//                 <Card.Title as="h4">Edit Profile</Card.Title>
+//               </Card.Header>
+//               <Card.Body>
+//                 <Form>
+//                   <Row>
+//                     <Col className="pr-1" md="5">
+//                       <Form.Group>
+//                         <label>Company (disabled)</label>
+//                         <Form.Control
+//                           defaultValue="Creative Code Inc."
+//                           disabled
+//                           placeholder="Company"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col className="px-1" md="3">
+//                       <Form.Group>
+//                         <label>Username</label>
+//                         <Form.Control
+//                           defaultValue="michael23"
+//                           placeholder="Username"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col className="pl-1" md="4">
+//                       <Form.Group>
+//                         <label htmlFor="exampleInputEmail1">
+//                           Email address
+//                         </label>
+//                         <Form.Control
+//                           placeholder="Email"
+//                           type="email"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+//                   <Row>
+//                     <Col className="pr-1" md="6">
+//                       <Form.Group>
+//                         <label>First Name</label>
+//                         <Form.Control
+//                           defaultValue="Mike"
+//                           placeholder="Company"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col className="pl-1" md="6">
+//                       <Form.Group>
+//                         <label>Last Name</label>
+//                         <Form.Control
+//                           defaultValue="Andrew"
+//                           placeholder="Last Name"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+//                   <Row>
+//                     <Col md="12">
+//                       <Form.Group>
+//                         <label>Address</label>
+//                         <Form.Control
+//                           defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+//                           placeholder="Home Address"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+//                   <Row>
+//                     <Col className="pr-1" md="4">
+//                       <Form.Group>
+//                         <label>City</label>
+//                         <Form.Control
+//                           defaultValue="Mike"
+//                           placeholder="City"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col className="px-1" md="4">
+//                       <Form.Group>
+//                         <label>Country</label>
+//                         <Form.Control
+//                           defaultValue="Andrew"
+//                           placeholder="Country"
+//                           type="text"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col className="pl-1" md="4">
+//                       <Form.Group>
+//                         <label>Postal Code</label>
+//                         <Form.Control
+//                           placeholder="ZIP Code"
+//                           type="number"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+//                   <Row>
+//                     <Col md="12">
+//                       <Form.Group>
+//                         <label>About Me</label>
+//                         <Form.Control
+//                           cols="80"
+//                           defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
+//                           that two seat Lambo."
+//                           placeholder="Here can be your description"
+//                           rows="4"
+//                           as="textarea"
+//                         ></Form.Control>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+//                   <Button
+//                     className="btn-fill pull-right"
+//                     type="submit"
+//                     variant="info"
+//                   >
+//                     Update Profile
+//                   </Button>
+//                   <div className="clearfix"></div>
+//                 </Form>
+//               </Card.Body>
+//             </Card>
+//           </Col>
+//           <Col md="4">
+//             <Card className="card-user">
+//               <div className="card-image">
+//                 {/* <img
+//                   alt="..."
+//                   // src={require("assets/img/photo-1431578500526-4d9613015464.jpeg")}
+//                 ></img> */}
+//               </div>
+//               <Card.Body>
+//                 <div className="author">
+//                   <a href="#pablo" onClick={(e) => e.preventDefault()}>
+//                     {/* <img
+//                       alt="..."
+//                       className="avatar border-gray"
+//                       src={require("assets/img/faces/face-3.jpg")}
+//                     ></img> */}
+//                     <h5 className="title">Mike Andrew</h5>
+//                   </a>
+//                   <p className="description">michael24</p>
+//                 </div>
+//                 <p className="description text-center">
+//                   "Lamborghini Mercy <br></br>
+//                   Your chick she so thirsty <br></br>
+//                   I'm in that two seat Lambo"
+//                 </p>
+//               </Card.Body>
+//               <hr></hr>
+//               <div className="button-container mr-auto ml-auto">
+//                 <Button
+//                   className="btn-simple btn-icon"
+//                   href="#pablo"
+//                   onClick={(e) => e.preventDefault()}
+//                   variant="link"
+//                 >
+//                   <i className="fab fa-facebook-square"></i>
+//                 </Button>
+//                 <Button
+//                   className="btn-simple btn-icon"
+//                   href="#pablo"
+//                   onClick={(e) => e.preventDefault()}
+//                   variant="link"
+//                 >
+//                   <i className="fab fa-twitter"></i>
+//                 </Button>
+//                 <Button
+//                   className="btn-simple btn-icon"
+//                   href="#pablo"
+//                   onClick={(e) => e.preventDefault()}
+//                   variant="link"
+//                 >
+//                   <i className="fab fa-google-plus-square"></i>
+//                 </Button>
+//               </div>
+//             </Card>
+//           </Col>
+//         </Row>
+//       </Container>
+//     </>
+//   )
+// }
+
+// export default ProfilePage
+import React, { useState, useEffect } from 'react';
+import { Button, Card, Form, Container, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import SpinnerComponent from '../components/SpinnerComponent';
+import axios from 'axios';
 
 const ProfilePage = () => {
+  const authState = useSelector((state) => state.auth);
+  const [profileData, setProfileData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    const fetchProfileDetails = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/v1/profile/me/', {
+          headers: {
+            Authorization: `Bearer ${authState.accessToken}`,
+          },
+        });
+
+        setProfileData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching profile details:', error);
+        toast.error('Error fetching profile details');
+        setHasError(true);
+        setIsLoading(false);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      // Set loading to false after a certain time (e.g., 10 seconds)
+      setIsLoading(false);
+      toast.error('Profile details loading timeout');
+    }, 10000); // Adjust the timeout duration as needed
+
+    if (authState.accessToken) {
+      fetchProfileDetails();
+    }
+
+    // Clear the timeout when the component unmounts or when the request is successful
+    return () => clearTimeout(timeoutId);
+  }, [authState.accessToken]);
+
+  if (isLoading) {
+    return <SpinnerComponent />;
+  }
+
+  if (hasError) {
+    return <div>Error loading profile details</div>;
+  }
+
+  if (!profileData) {
+    return <div>No profile data found</div>;
+  }
+
+  const { company, username, email, /* other properties */ } = profileData;
+
   return (
     <>
-    <section className="agent-single">
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="agent-avatar-box">
-                <img
-                  src="assets/img/agent-7.jpg"
-                  alt=""
-                  className="agent-avatar img-fluid"
-                />
-              </div>
-            </div>
-            <div className="col-md-5 section-md-t3">
-              <div className="agent-info-box">
-                <div className="agent-title">
-                  <div className="title-box-d">
-                    <h3 className="title-d">
-                      Margaret Stone
-                      <br /> Escala
-                    </h3>
-                  </div>
-                </div>
-                <div className="agent-content mb-3">
-                  <p className="content-d color-text-a">
-                    Sed porttitor lectus nibh. Praesent sapien massa, convallis
-                    a pellentesque nec, egestas non nisi. Vivamus suscipit
-                    tortor eget felis porttitor volutpat. Vivamus suscipit
-                    tortor eget felis porttitor volutpat.
-                  </p>
-                  <div className="info-agents color-a">
-                    <p>
-                      <strong>Phone: </strong>
-                      <span className="color-text-a"> +54 356 945234 </span>
-                    </p>
-                    <p>
-                      <strong>Mobile: </strong>
-                      <span className="color-text-a"> 999 123 456 789</span>
-                    </p>
-                    <p>
-                      <strong>Email: </strong>
-                      <span className="color-text-a"> agents@example.com</span>
-                    </p>
-                    <p>
-                      <strong>skype: </strong>
-                      <span className="color-text-a"> Margaret.Es</span>
-                    </p>
-                    <p>
-                      <strong>Email: </strong>
-                      <span className="color-text-a"> agents@example.com</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="socials-footer">
-                  <ul className="list-inline">
-                    <li className="list-inline-item">
-                      <a href="#!" className="link-one">
-                        <i className="bi bi-facebook" aria-hidden="true" />
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a href="#!" className="link-one">
-                        <i className="bi bi-twitter" aria-hidden="true" />
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a href="#!" className="link-one">
-                        <i className="bi bi-instagram" aria-hidden="true" />
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a href="#!" className="link-one">
-                        <i className="bi bi-linkedin" aria-hidden="true" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-12 section-t8">
-          <div className="title-box-d">
-            <h3 className="title-d">My Properties (6)</h3>
-          </div>
-        </div>
-        {/* <div className="row property-grid grid">
-          <div className="col-sm-12">
-            <div className="grid-option">
-              <form>
-                <select className="custom-select">
-                  <option selected="">All</option>
-                  <option value={1}>New to Old</option>
-                  <option value={2}>For Rent</option>
-                  <option value={3}>For Sale</option>
-                </select>
-              </form>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-1.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-3.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#!">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#!" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-6.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#!">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#!" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-7.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#!">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#!" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-8.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#!">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#!" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card-box-a card-shadow">
-              <div className="img-box-a">
-                <img
-                  src="assets/img/property-10.jpg"
-                  alt=""
-                  className="img-a img-fluid"
-                />
-              </div>
-              <div className="card-overlay">
-                <div className="card-overlay-a-content">
-                  <div className="card-header-a">
-                    <h2 className="card-title-a">
-                      <a href="#!">
-                        204 Mount
-                        <br /> Olive Road Two
-                      </a>
-                    </h2>
-                  </div>
-                  <div className="card-body-a">
-                    <div className="price-box d-flex">
-                      <span className="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="#!" className="link-a">
-                      Click here to view
-                      <span className="bi bi-chevron-right" />
-                    </a>
-                  </div>
-                  <div className="card-footer-a">
-                    <ul className="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 className="card-info-title">Area</h4>
-                        <span>
-                          340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 className="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-      </div>
-    </div>
-  </section>
+      <Container fluid>
+        <Row>
+          <Col md="8">
+            <Card>
+              {/* ... rest of your code ... */}
+              <Row>
+                <Col className="pr-1" md="5">
+                  <Form.Group>
+                    <label>Company (disabled)</label>
+                    <Form.Control defaultValue={company} disabled placeholder="Company" type="text" />
+                  </Form.Group>
+                </Col>
+                <Col className="px-1" md="3">
+                  <Form.Group>
+                    <label>Username</label>
+                    <Form.Control defaultValue={username} placeholder="Username" type="text" />
+                  </Form.Group>
+                </Col>
+                <Col className="pl-1" md="4">
+                  <Form.Group>
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <Form.Control defaultValue={email} placeholder="Email" type="email" />
+                  </Form.Group>
+                </Col>
+              </Row>
+              {/* ... rest of your form fields ... */}
+            </Card>
+          </Col>
+          {/* ... other layout ... */}
+        </Row>
+      </Container>
     </>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

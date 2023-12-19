@@ -34,15 +34,12 @@ class TopAgentsListAPIView(generics.ListAPIView):
 
 
 class GetProfileAPIView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [ProfileJSONRenderer]
 
-    def get(self, request, username):
-        try:
-            user_profile = Profile.objects.get(user__username=username)
-        except Profile.DoesNotExist:
-            raise ProfileNotFound
-
+    def get(self, request):
+        user = self.request.user
+        user_profile = Profile.objects.get(user=user)
         serializer = ProfileSerializer(user_profile, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 

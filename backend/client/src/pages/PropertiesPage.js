@@ -4,6 +4,7 @@ import {toast} from 'react-toastify';
 import Property from '../components/Property';
 import Title from '../components/Title';
 import SpinnerComponent from '../components/SpinnerComponent';
+import SearchForm from '../components/SearchForm';
 
 
 
@@ -33,8 +34,9 @@ const PropertiesPage = () => {
               <section className="property-grid grid">
               <div className="container" >
                 <div className="row">
+                  <SearchForm />
                 {properties.map((property) => (
-                <div className="col-md-4 mt-4">
+                <div className="col-md-4">
                       <div className="card-box-a card-shadow">
                       <Property property={property} key={property.id} />
                       </div>

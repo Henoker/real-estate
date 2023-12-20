@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 import ContactAgent from './ContactAgent';
 import PropertyTabs from './PropertyTabs';
 ;
@@ -7,7 +6,7 @@ import PropertyTabs from './PropertyTabs';
 
 const PropertyDescription = ({property}) => {
 
-	const { user } = useSelector((state) => state.auth);
+	
    
   return (
     <div className="row">
@@ -103,7 +102,7 @@ const PropertyDescription = ({property}) => {
                 </div>
                 </div>
             </div>
-        <ContactAgent/> <PropertyTabs />
+        <ContactAgent/> <PropertyTabs property={property} />
           
             {/* Contact agent component */}
        

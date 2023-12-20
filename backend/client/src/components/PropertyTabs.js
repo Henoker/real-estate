@@ -1,6 +1,7 @@
 import "bootstrap/js/dist/tab";
+import ReactPlayer from 'react-player/lazy'
 
-const PropertyTabs = () => {
+const PropertyTabs = ({property}) => {
   return (
       <div className="col-md-10 offset-md-1">
             <ul
@@ -55,15 +56,11 @@ const PropertyTabs = () => {
               role="tabpanel"
               aria-labelledby="pills-video-tab"
               >
-                <iframe
-                src="https://player.vimeo.com/video/73221098"
+                <ReactPlayer
+                url={property.video_url}
                 width="100%"
                 height={460}
-                frameBorder={0}
-                webkitallowfullscreen=""
-                mozallowfullscreen=""
-                allowFullScreen=""
-                title='iframe'
+
               />
             </div>
             <div
@@ -72,7 +69,7 @@ const PropertyTabs = () => {
               role="tabpanel"
               aria-labelledby="pills-plans-tab"
             >
-              <img src="https://cdn.houseplansservices.com/product/ols438ijj55pbk6u1e379fugca/w600.jpg?v=7" alt="" className="img-fluid w-100" />
+              <img src={"http://localhost:8000"+property.floor_plan} alt="" className="img-fluid w-100" />
             </div>
             <div
               className="tab-pane fade"

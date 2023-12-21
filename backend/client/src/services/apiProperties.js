@@ -4,6 +4,17 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api/v1/' }),
+  prepareHeaders: (headers, { getState }) => {
+    // Get the JWT token from the Redux state
+    
+    const accessToken = selectAccessToken(getState());
+    console.log(accessToken)
+
+    if (accessToken) {
+      headers.set('Authorization', `Bearer ${accessToken}`);
+    }
+    return headers;
+  },
   endpoints: (builder) => ({
     getProperties: builder.query({
       query: () => 'properties/all/',
@@ -11,13 +22,16 @@ export const api = createApi({
     getPropertyDetails: builder.query({
         query: (slug) => `properties/details/${slug}/`,
     }),
-    getProfileDetails: builder.query({
-      query: () => 'profile/me/',
-    }),
     getAllAgents: builder.query({
       query: () => 'profile/agents/all/',
+    }),
+    getProfile: builder.query({
+      query: () => 'profile/me/',
     }),
   }),
 });
 
-export const { useGetPropertiesQuery, useGetPropertyDetailsQuery, useGetProfileDetailsQuery, useGetAllAgentsQuery } = api;
+const selectAccessToken = (state) => state.auth.user?.access;
+
+
+export const { useGetPropertiesQuery, useGetPropertyDetailsQuery, useGetProfileQuery, useGetAllAgentsQuery } = api;

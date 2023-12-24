@@ -1,70 +1,85 @@
-// import React, { useEffect } from 'react';
-// import { Button, Card, Form, Container, Row, Col } from 'react-bootstrap';
-// import { toast } from 'react-toastify';
-// import SpinnerComponent from '../components/SpinnerComponent';
-// import { useGetProfileQuery } from '../services/apiProperties';
-
-// const ProfilePage = () => {
-//   (
-//     <>
-//       <Container fluid>
-//         <Row>
-//           <Col md="8">
-//             <Card>
-//               {/* ... rest of your code ... */}
-//               <Row>
-//                 <Col className="pr-1" md="5">
-//                   <Form.Group>
-//                     <label>Company (disabled)</label>
-//                     <Form.Control defaultValue='' disabled placeholder="Company" type="text" />
-//                   </Form.Group>
-//                 </Col>
-//                 <Col className="px-1" md="3">
-//                   <Form.Group>
-//                     <label>Username</label>
-//                     <Form.Control defaultValue={profile.username} placeholder="Username" type="text" />
-//                   </Form.Group>
-//                 </Col>
-//                 <Col className="pl-1" md="4">
-//                   <Form.Group>
-//                     <label htmlFor="exampleInputEmail1">Email address</label>
-//                     <Form.Control defaultValue={profile.email} placeholder="Email" type="email" />
-//                   </Form.Group>
-//                 </Col>
-//               </Row>
-//               {/* ... rest of your form fields ... */}
-//             </Card>
-//           </Col>
-//           {/* ... other layout ... */}
-//         </Row>
-//       </Container>
-//     </>
-//   );
-// };
-
-// export default ProfilePage;
-import React, { useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Card, Form, Container, Row, Col } from 'react-bootstrap';
+import { Button, Card, Form, Container, Row, Col , Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import SpinnerComponent from '../components/SpinnerComponent';
-import { fetchUserProfile, resetProfile } from '../features/auth/profileSlice';
+import { fetchUserProfile, resetProfile } from '../features/profile/profileSlice';
+import { updateProfile, resetUpdateProfile } from '../features/profile/profileUpdateSlice';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
-  const { profile, isLoading, isError, isSuccess, message } = useSelector((state) => state.profile);
+  const { profile = {}, isLoading: profileLoading, isError, isSuccess, message } = useSelector((state) => state.profile) || {};
+  const { isLoading: updateLoading, isSuccess: updateSuccess, message: updateMessage } = useSelector((state) => state.profileUpdate) || {};
+
+  const [showModal, setShowModal] = useState(false);
+  const [updatedProfileData, setUpdatedProfileData] = useState({
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    city: '',
+    country: '',
+    postal_code: '',
+    about_me: '',
+  });
 
   useEffect(() => {
-    // Dispatch the fetchUserProfile action when the component mounts
     dispatch(fetchUserProfile());
-
-    // Clean up the profile state when the component unmounts
     return () => {
       dispatch(resetProfile());
     };
   }, [dispatch]);
 
-  if (isLoading) {
+
+  useEffect(() => {
+    if (profile && isSuccess) {
+      // Update the state with profile data on initial load and after successful update
+      setUpdatedProfileData({
+        username: profile.username || '',
+        email: profile.email || '',
+        first_name: profile.first_name || '',
+        last_name: profile.last_name || '',
+        city: profile.city || '',
+        country: profile.country || '',
+        postal_code: profile.postal_code || '',
+        about_me: profile.about_me || '',
+      });
+    }
+  }, [profile, isSuccess]);
+
+ 
+
+  useEffect(() => {
+    // Handle profile update success
+    if (updateSuccess) {
+      // Optionally, you can fetch the updated profile again
+      dispatch(fetchUserProfile());
+      // Reset the update profile state
+      dispatch(resetUpdateProfile());
+    }
+  }, [updateSuccess, dispatch]);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedProfileData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProfile(updatedProfileData));
+    setShowModal(false);
+  };
+
+  if (profileLoading || updateLoading === undefined) {
+    // Handle the loading state or return an error component
     return <SpinnerComponent />;
   }
 
@@ -74,42 +89,12 @@ const ProfilePage = () => {
     return null; // or render an error component
   }
 
+
+
+
   return (
-    // <>
-    //   <Container fluid>
-    //     <Row>
-    //       <Col md="8">
-    //         <Card>
-    //           {/* ... rest of your code ... */}
-    //           <Row>
-    //             <Col className="pr-1" md="5">
-    //               <Form.Group>
-    //                 <label>Company (disabled)</label>
-    //                 <Form.Control defaultValue={''} disabled placeholder="Company" type="text" />
-    //               </Form.Group>
-    //             </Col>
-    //             <Col className="px-1" md="3">
-    //               <Form.Group>
-    //                 <label>Username</label>
-    //                 <Form.Control defaultValue={profile?.username || ''} placeholder="Username" type="text" />
-    //               </Form.Group>
-    //             </Col>
-    //             <Col className="pl-1" md="4">
-    //               <Form.Group>
-    //                 <label htmlFor="exampleInputEmail1">Email address</label>
-    //                 <Form.Control defaultValue={profile?.email || ''} placeholder="Email" type="email" />
-    //               </Form.Group>
-    //             </Col>
-    //           </Row>
-    //           {/* ... rest of your form fields ... */}
-    //         </Card>
-    //       </Col>
-    //       {/* ... other layout ... */}
-    //     </Row>
-    //   </Container>
-    // </>
     <>
-      <Container fluid>
+      {/* <Container fluid>
         <Row>
           <Col md="8">
             <Card>
@@ -117,7 +102,7 @@ const ProfilePage = () => {
                 <Card.Title as="h4">Edit Profile</Card.Title>
               </Card.Header>
               <Card.Body>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col className="pr-1" md="5">
                       <Form.Group>
@@ -131,11 +116,12 @@ const ProfilePage = () => {
                       </Form.Group>
                     </Col>
                     <Col className="px-1" md="3">
-                      <Form.Group>
+                      <Form.Group >
                         <label>Username</label>
                         <Form.Control
-                          defaultValue={profile?.username || ''}
                           placeholder="Username"
+                          value={updatedProfileData.username}
+                          onChange={handleInputChange}
                           type="text"
                         ></Form.Control>
                       </Form.Group>
@@ -146,8 +132,10 @@ const ProfilePage = () => {
                           Email address
                         </label>
                         <Form.Control
-                          defaultValue={profile?.email || ''}
+                          // defaultValue={profile?.email || ''}
                           placeholder="Email"
+                          value={updatedProfileData.email}
+                          onChange={handleInputChange}
                           type="email"
                         ></Form.Control>
                       </Form.Group>
@@ -158,7 +146,9 @@ const ProfilePage = () => {
                       <Form.Group>
                         <label>First Name</label>
                         <Form.Control
-                          defaultValue={profile?.first_name || ''}
+                          // defaultValue={profile?.first_name || ''}
+                          value={updatedProfileData.first_name}
+                          onChange={handleInputChange}
                           placeholder="Company"
                           type="text"
                         ></Form.Control>
@@ -168,31 +158,36 @@ const ProfilePage = () => {
                       <Form.Group>
                         <label>Last Name</label>
                         <Form.Control
-                          defaultValue={profile?.last_name || ''}
+                          // defaultValue={profile?.last_name || ''}
+                          value={profile?.last_name || ''}
+                          onChange={handleInputChange}
                           placeholder="Last Name"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row>
+                  {/* <Row>
                     <Col md="12">
                       <Form.Group>
                         <label>Address</label>
                         <Form.Control
-                          defaultValue={(profile?.city && profile?.country) || ''}
+                          defaultValue={ profile?.country || ''}
                           placeholder="Home Address"
+                          value={profile?.country || ''}
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                  </Row>
-                  <Row>
+                  </Row> 
+                   <Row>
                     <Col className="pr-1" md="4">
                       <Form.Group>
                         <label>City</label>
                         <Form.Control
-                          defaultValue={profile?.city || ''}
+                          // defaultValue={profile?.city || ''}
+                          value={profile?.city || ''}
+                          onChange={handleInputChange}
                           placeholder="City"
                           type="text"
                         ></Form.Control>
@@ -202,7 +197,9 @@ const ProfilePage = () => {
                       <Form.Group>
                         <label>Country</label>
                         <Form.Control
-                          defaultValue={profile?.country || ''}
+                          // defaultValue={profile?.country || ''}
+                          value={profile?.country || ''}
+                          onChange={handleInputChange}
                           placeholder="Country"
                           type="text"
                         ></Form.Control>
@@ -214,17 +211,21 @@ const ProfilePage = () => {
                         <Form.Control
                           placeholder="ZIP Code"
                           type="number"
+                          value={profile?.postal_code || ''}
+                          onChange={handleInputChange}
                         ></Form.Control>
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row>
+                   <Row>
                     <Col md="12">
                       <Form.Group>
                         <label>About Me</label>
                         <Form.Control
                           cols="80"
-                          defaultValue={profile?.about_me || ''}
+                          // defaultValue={profile?.about_me || ''}
+                          value={profile?.about_me || ''}
+                          onChange={handleInputChange}
                           placeholder="Here can be your description"
                           rows="4"
                           as="textarea"
@@ -236,13 +237,14 @@ const ProfilePage = () => {
                     className="btn-fill pull-right"
                     type="submit"
                     variant="info"
+                    style={{ marginTop: '10px' }}
                   >
                     Update Profile
                   </Button>
                   <div className="clearfix"></div>
-                </Form>
-              </Card.Body>
-            </Card>
+                </Form> 
+               </Card.Body> 
+            </Card> 
           </Col>
           <Col md="4">
             <Card className="card-user">
@@ -252,53 +254,469 @@ const ProfilePage = () => {
                   src={"https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1596&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
                 ></img>
               </div>
-              <Card.Body>
-                <div className="author">
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={profile?.profile_photo || ''}
-                    ></img>
-                    <h5 className="title">{profile?.full_name || ''}</h5>
-                  </a>
-                  <p className="description">{profile?.username || ''}</p>
-                </div>
-                <p className="description text-center">
-                {profile?.about_me || ''}
-                </p>
-              </Card.Body>
-              <hr></hr>
-              <div className="button-container mr-auto ml-auto">
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </Button>
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-twitter"></i>
-                </Button>
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-google-plus-square"></i>
-                </Button>
-              </div>
+              
             </Card>
-          </Col>
+          </Col> 
         </Row>
-      </Container>
+      </Container>  */}
+      <div className="container">
+    <div className="main-body">
+      {/* Breadcrumb */}
+      
+      {/* /Breadcrumb */}
+      <div className="row gutters-sm">
+        <div className="col-md-4 mb-3">
+          <div className="card">
+            <div className="card-body">
+              <div className="d-flex flex-column align-items-center text-center">
+                <img
+                  src={profile?.profile_photo || ''}
+                  alt="Admin"
+                  className="rounded-circle"
+                  width={150}
+                />
+                <div className="mt-3">
+                  <h4>{profile?.full_name || ''}</h4>
+                  <p className="text-secondary mb-1">Relator</p>
+                  <p className="text-muted font-size-sm">
+                   {profile?.city || ''}, {profile?.country || ''}
+                  </p>
+                  <button className="btn btn-primary">Follow</button>
+                  <button className="btn btn-outline-primary">Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card mt-3">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 className="mb-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-globe mr-2 icon-inline"
+                  >
+                    <circle cx={12} cy={12} r={10} />
+                    <line x1={2} y1={12} x2={22} y2={12} />
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                  Website
+                </h6>
+                <span className="text-secondary">https://bootdey.com</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 className="mb-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-github mr-2 icon-inline"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  Github
+                </h6>
+                <span className="text-secondary">bootdey</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 className="mb-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-twitter mr-2 icon-inline text-info"
+                  >
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                  </svg>
+                  Twitter
+                </h6>
+                <span className="text-secondary">@bootdey</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 className="mb-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-instagram mr-2 icon-inline text-danger"
+                  >
+                    <rect x={2} y={2} width={20} height={20} rx={5} ry={5} />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                  Instagram
+                </h6>
+                <span className="text-secondary">bootdey</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 className="mb-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-facebook mr-2 icon-inline text-primary"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                  Facebook
+                </h6>
+                <span className="text-secondary">bootdey</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="col-md-8">
+          <div className="card mb-3">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">First Name</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{profile?.first_name || ''}</div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Last Name</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                {profile?.last_name || ''} 
+                </div>
+                <hr />
+              </div>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Email</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{profile?.email || ''}</div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Phone</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{profile?.phone_number || ''}</div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">About Me</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{profile?.about_me || ''}</div>
+              </div>
+              <hr />
+              
+              <hr />
+              <div className="row">
+                <div className="col-sm-12">
+                  <Button
+                    className="btn btn-info "
+                    onClick={handleOpenModal}
+                  >
+                    Edit
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row gutters-sm">
+            <div className="col-sm-6 mb-3">
+              <div className="card h-100">
+                <div className="card-body">
+                  <h6 className="d-flex align-items-center mb-3">
+                    <i className="material-icons text-info mr-2">assignment</i>
+                    Project Status
+                  </h6>
+                  <small>Web Design</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "80%" }}
+                      aria-valuenow={80}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Website Markup</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "72%" }}
+                      aria-valuenow={72}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>One Page</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "89%" }}
+                      aria-valuenow={89}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Mobile Template</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "55%" }}
+                      aria-valuenow={55}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Backend API</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "66%" }}
+                      aria-valuenow={66}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6 mb-3">
+              <div className="card h-100">
+                <div className="card-body">
+                  <h6 className="d-flex align-items-center mb-3">
+                    <i className="material-icons text-info mr-2">assignment</i>
+                    Project Status
+                  </h6>
+                  <small>Web Design</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "80%" }}
+                      aria-valuenow={80}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Website Markup</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "72%" }}
+                      aria-valuenow={72}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>One Page</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "89%" }}
+                      aria-valuenow={89}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Mobile Template</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "55%" }}
+                      aria-valuenow={55}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                  <small>Backend API</small>
+                  <div className="progress mb-3" style={{ height: 5 }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      role="progressbar"
+                      style={{ width: "66%" }}
+                      aria-valuenow={66}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+          <Row>
+                    
+                    <Col className="px-1" md="6">
+                      <Form.Group >
+                        <label>Username</label>
+                        <Form.Control
+                          placeholder="Username"
+                          value={updatedProfileData.username}
+                          onChange={handleInputChange}
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                    <Col className="pl-1" md="6">
+                      <Form.Group>
+                        <label htmlFor="exampleInputEmail1">
+                          Email address
+                        </label>
+                        <Form.Control
+                          // defaultValue={profile?.email || ''}
+                          placeholder="Email"
+                          value={updatedProfileData.email}
+                          onChange={handleInputChange}
+                          type="email"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="px-1" md="6">
+                      <Form.Group>
+                        <label>First Name</label>
+                        <Form.Control
+                          // defaultValue={profile?.first_name || ''}
+                          value={updatedProfileData.first_name}
+                          onChange={handleInputChange}
+                          placeholder="Company"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                    <Col className="pl-1" md="6">
+                      <Form.Group>
+                        <label>Last Name</label>
+                        <Form.Control
+                          // defaultValue={profile?.last_name || ''}
+                          value={profile?.last_name || ''}
+                          onChange={handleInputChange}
+                          placeholder="Last Name"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                  </Row> 
+                   <Row>
+                    <Col className="px-1" md="6">
+                      <Form.Group>
+                        <label>City</label>
+                        <Form.Control
+                          // defaultValue={profile?.city || ''}
+                          value={profile?.city || ''}
+                          onChange={handleInputChange}
+                          placeholder="City"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                    <Col className="pl-1" md="6">
+                      <Form.Group>
+                        <label>Country</label>
+                        <Form.Control
+                          // defaultValue={profile?.country || ''}
+                          value={profile?.country || ''}
+                          onChange={handleInputChange}
+                          placeholder="Country"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                   
+                  </Row>
+                  <Row>
+                  <Col className="px-1" md="6">
+                      <Form.Group>
+                        <label>Phone Number</label>
+                        <Form.Control
+                          // defaultValue={profile?.country || ''}
+                          value={profile?.phone_number || ''}
+                          onChange={handleInputChange}
+                          placeholder="Country"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                  </Col>
+                  </Row>
+                   <Row>
+                    <Col md="12">
+                      <Form.Group>
+                        <label>About Me</label>
+                        <Form.Control
+                          cols="80"
+                          // defaultValue={profile?.about_me || ''}
+                          value={profile?.about_me || ''}
+                          onChange={handleInputChange}
+                          placeholder="Here can be your description"
+                          rows="4"
+                          as="textarea"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Button
+                    className="btn-fill pull-right"
+                    type="submit"
+                    variant="info"
+                    style={{ marginTop: '10px' }}
+                  >
+                    Update Profile
+                  </Button>
+                  <div className="clearfix"></div>
+          </Form>
+        </Modal.Body>
+  </Modal>
     </>
   );
 };

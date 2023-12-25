@@ -94,171 +94,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      {/* <Container fluid>
-        <Row>
-          <Col md="8">
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4">Edit Profile</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Form onSubmit={handleSubmit}>
-                  <Row>
-                    <Col className="pr-1" md="5">
-                      <Form.Group>
-                        <label>Company (disabled)</label>
-                        <Form.Control
-                          defaultValue="Creative Code Inc."
-                          disabled
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="3">
-                      <Form.Group >
-                        <label>Username</label>
-                        <Form.Control
-                          placeholder="Username"
-                          value={updatedProfileData.username}
-                          onChange={handleInputChange}
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
-                        <Form.Control
-                          // defaultValue={profile?.email || ''}
-                          placeholder="Email"
-                          value={updatedProfileData.email}
-                          onChange={handleInputChange}
-                          type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="6">
-                      <Form.Group>
-                        <label>First Name</label>
-                        <Form.Control
-                          // defaultValue={profile?.first_name || ''}
-                          value={updatedProfileData.first_name}
-                          onChange={handleInputChange}
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label>Last Name</label>
-                        <Form.Control
-                          // defaultValue={profile?.last_name || ''}
-                          value={profile?.last_name || ''}
-                          onChange={handleInputChange}
-                          placeholder="Last Name"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  {/* <Row>
-                    <Col md="12">
-                      <Form.Group>
-                        <label>Address</label>
-                        <Form.Control
-                          defaultValue={ profile?.country || ''}
-                          placeholder="Home Address"
-                          value={profile?.country || ''}
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row> 
-                   <Row>
-                    <Col className="pr-1" md="4">
-                      <Form.Group>
-                        <label>City</label>
-                        <Form.Control
-                          // defaultValue={profile?.city || ''}
-                          value={profile?.city || ''}
-                          onChange={handleInputChange}
-                          placeholder="City"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="4">
-                      <Form.Group>
-                        <label>Country</label>
-                        <Form.Control
-                          // defaultValue={profile?.country || ''}
-                          value={profile?.country || ''}
-                          onChange={handleInputChange}
-                          placeholder="Country"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label>Postal Code</label>
-                        <Form.Control
-                          placeholder="ZIP Code"
-                          type="number"
-                          value={profile?.postal_code || ''}
-                          onChange={handleInputChange}
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                   <Row>
-                    <Col md="12">
-                      <Form.Group>
-                        <label>About Me</label>
-                        <Form.Control
-                          cols="80"
-                          // defaultValue={profile?.about_me || ''}
-                          value={profile?.about_me || ''}
-                          onChange={handleInputChange}
-                          placeholder="Here can be your description"
-                          rows="4"
-                          as="textarea"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Button
-                    className="btn-fill pull-right"
-                    type="submit"
-                    variant="info"
-                    style={{ marginTop: '10px' }}
-                  >
-                    Update Profile
-                  </Button>
-                  <div className="clearfix"></div>
-                </Form> 
-               </Card.Body> 
-            </Card> 
-          </Col>
-          <Col md="4">
-            <Card className="card-user">
-              <div className="card-image">
-                <img
-                  alt="..."
-                  src={"https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1596&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-                ></img>
-              </div>
-              
-            </Card>
-          </Col> 
-        </Row>
-      </Container>  */}
+      
       <div className="container">
     <div className="main-body">
       {/* Breadcrumb */}
@@ -592,9 +428,120 @@ const ProfilePage = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-          <Row>
-                    
-                    <Col className="px-1" md="6">
+          <div className="col-lg-12 mb-5 mb-lg-0">
+            <div className="card mt-0">
+              <div className="card-body py-0 px-md-5">
+				<h1 className="fw-bold text-center">Update Profile</h1>
+                  {/* 2 column grid layout with text inputs for the first and last names */}
+                  <div className="row">
+				  <div className="form-outline mb-4">
+                        <input
+                          type="username"
+						//   placeholder="Enter Username"
+						  value={updatedProfileData.username}
+              onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example1">
+                          Username
+                        </label>
+                  </div>
+                  {/* Password input */}
+				  <div className="form-outline mb-4">
+                        <input
+                          type="email"
+						//   placeholder="Enter Email"
+						  value={updatedProfileData.email}
+              onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example2">
+                          Email Address
+                        </label>
+                  </div>
+                    <div className="col-md-6 mb-4">
+						<div className="form-outline">
+                        <input
+                          type="name"
+						//   placeholder="Enter First Name"
+						  value={updatedProfileData.first_name}
+						  onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example2">
+                          First name
+                        </label>
+                        </div>
+                    </div>
+                    <div className="col-md-6 mb-4">
+						<div className="form-outline">
+                        <input
+                          type="name"
+						//   placeholder="Enter Last Name"
+						  value={updatedProfileData.last_name}
+						  onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="form3Example1">
+                          Last name
+                        </label>
+                        </div> 
+                    </div>
+                  </div>
+				  <div className="row">
+            <div className="col-md-6 mb-4">
+              <div className="form-outline">
+                <input
+                type="text"
+					      value={updatedProfileData.city}
+					      onChange={handleInputChange}
+                className="form-control"
+                />
+                <label className="form-label" htmlFor="form3Example3">
+                  City
+                </label>
+              </div>
+            </div>
+            <div className="col-md-6 mb-4">
+              <div className="form-outline">
+                <input
+                  type="text"
+					        value={updatedProfileData.country}
+					        onChange={handleInputChange}
+                  className="form-control"
+                />
+                <label className="form-label" htmlFor="form3Example3">
+                  Country
+                </label>
+              </div>
+            </div> 
+            <div className="col-md-12 mb-4">
+              <div className="form-outline">
+                <textarea
+                  type="text"
+					        value={updatedProfileData.about_me}
+					        onChange={handleInputChange}
+                  className="form-control"
+                />
+                <label className="form-label" htmlFor="form3Example3">
+                  About Me
+                </label>
+              </div>
+            </div> 
+          </div>         
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block mb-4"
+                  >
+                    Update
+                  </button>
+                  {/* Register buttons */}
+                 
+                  
+              </div>
+            </div>
+          </div>
+                    {/* <Col className="px-1" md="6">
                       <Form.Group >
                         <label>Username</label>
                         <Form.Control
@@ -713,7 +660,7 @@ const ProfilePage = () => {
                   >
                     Update Profile
                   </Button>
-                  <div className="clearfix"></div>
+                  <div className="clearfix"></div>*/}
           </Form>
         </Modal.Body>
   </Modal>

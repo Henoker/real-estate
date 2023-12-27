@@ -49,7 +49,7 @@ const ContactAgent = () => {
           </div>
           <div className="row">
             <div className="col-md-6 col-lg-4">
-              <img src={agentImage} alt="" className="img-fluid" />
+              <img src={agentImage} alt="" className="img img-fluid" />
             </div>
             <div className="col-md-6 col-lg-4">
               <div className="property-agent">

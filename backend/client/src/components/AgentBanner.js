@@ -9,7 +9,7 @@ const AgentBanner = () => {
         your real estate?
       </h3>
     </div>
-    <div className="col-md-5 grid_5">
+    {/* <div className="col-md-5 grid_5">
       <div className="banner2">
         <a className="btn2" href="#!">
           click here
@@ -20,7 +20,7 @@ const AgentBanner = () => {
         </h3>
         <div className="clearfix"> </div>
       </div>
-    </div>
+    </div> */}
     <div className="clearfix"> </div>
   </div>
   )

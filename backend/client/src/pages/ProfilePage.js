@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Card, Form, Container, Row, Col , Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import SpinnerComponent from '../components/SpinnerComponent';
 import { fetchUserProfile, resetProfile } from '../features/profile/profileSlice';
@@ -535,132 +535,12 @@ const ProfilePage = () => {
                   >
                     Update
                   </button>
-                  {/* Register buttons */}
+              
                  
                   
               </div>
             </div>
           </div>
-                    {/* <Col className="px-1" md="6">
-                      <Form.Group >
-                        <label>Username</label>
-                        <Form.Control
-                          placeholder="Username"
-                          value={updatedProfileData.username}
-                          onChange={handleInputChange}
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
-                        <Form.Control
-                          // defaultValue={profile?.email || ''}
-                          placeholder="Email"
-                          value={updatedProfileData.email}
-                          onChange={handleInputChange}
-                          type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="px-1" md="6">
-                      <Form.Group>
-                        <label>First Name</label>
-                        <Form.Control
-                          // defaultValue={profile?.first_name || ''}
-                          value={updatedProfileData.first_name}
-                          onChange={handleInputChange}
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label>Last Name</label>
-                        <Form.Control
-                          // defaultValue={profile?.last_name || ''}
-                          value={profile?.last_name || ''}
-                          onChange={handleInputChange}
-                          placeholder="Last Name"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                  </Row> 
-                   <Row>
-                    <Col className="px-1" md="6">
-                      <Form.Group>
-                        <label>City</label>
-                        <Form.Control
-                          // defaultValue={profile?.city || ''}
-                          value={profile?.city || ''}
-                          onChange={handleInputChange}
-                          placeholder="City"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label>Country</label>
-                        <Form.Control
-                          // defaultValue={profile?.country || ''}
-                          value={profile?.country || ''}
-                          onChange={handleInputChange}
-                          placeholder="Country"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                   
-                  </Row>
-                  <Row>
-                  <Col className="px-1" md="6">
-                      <Form.Group>
-                        <label>Phone Number</label>
-                        <Form.Control
-                          // defaultValue={profile?.country || ''}
-                          value={profile?.phone_number || ''}
-                          onChange={handleInputChange}
-                          placeholder="Country"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                  </Col>
-                  </Row>
-                   <Row>
-                    <Col md="12">
-                      <Form.Group>
-                        <label>About Me</label>
-                        <Form.Control
-                          cols="80"
-                          // defaultValue={profile?.about_me || ''}
-                          value={profile?.about_me || ''}
-                          onChange={handleInputChange}
-                          placeholder="Here can be your description"
-                          rows="4"
-                          as="textarea"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Button
-                    className="btn-fill pull-right"
-                    type="submit"
-                    variant="info"
-                    style={{ marginTop: '10px' }}
-                  >
-                    Update Profile
-                  </Button>
-                  <div className="clearfix"></div>*/}
           </Form>
         </Modal.Body>
   </Modal>

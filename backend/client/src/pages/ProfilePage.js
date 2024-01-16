@@ -12,16 +12,24 @@ const ProfilePage = () => {
   const { isLoading: updateLoading, isSuccess: updateSuccess, message: updateMessage } = useSelector((state) => state.profileUpdate) || {};
 
   const [showModal, setShowModal] = useState(false);
-  const [updatedProfileData, setUpdatedProfileData] = useState({
-    username: '',
-    email: '',
-    first_name: '',
-    last_name: '',
-    city: '',
-    country: '',
-    postal_code: '',
-    about_me: '',
-  });
+  // const [updatedProfileData, setUpdatedProfileData] = useState({
+  //   username: '',
+  //   email: '',
+  //   first_name: '',
+  //   last_name: '',
+  //   city: '',
+  //   country: '',
+  //   postal_code: '',
+  //   about_me: '',
+  // });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [postal_code, setPostal_code] = useState("");
+  const [about_me, setAbout_me] = useState("");
 
   useEffect(() => {
     dispatch(fetchUserProfile());
@@ -34,16 +42,14 @@ const ProfilePage = () => {
   useEffect(() => {
     if (profile && isSuccess) {
       // Update the state with profile data on initial load and after successful update
-      setUpdatedProfileData({
-        username: profile.username || '',
-        email: profile.email || '',
-        first_name: profile.first_name || '',
-        last_name: profile.last_name || '',
-        city: profile.city || '',
-        country: profile.country || '',
-        postal_code: profile.postal_code || '',
-        about_me: profile.about_me || '',
-      });
+      setUsername(profile.username);
+      setEmail(profile.email);
+      setFirst_name(profile.first_name);
+      setLast_name(profile.last_name);
+      setCity(profile.city);
+      setCountry(profile.country);
+      setPostal_code(profile.postal_code);
+      setAbout_me(profile.about_me);
     }
   }, [profile, isSuccess]);
 
@@ -64,8 +70,37 @@ const ProfilePage = () => {
   };
 
   const handleInputChange = (e) => {
+    console.log('Event:', e);
     const { name, value } = e.target;
-    setUpdatedProfileData((prevData) => ({ ...prevData, [name]: value }));
+    switch (name) {
+      case 'username':
+        setUsername(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'first_name':
+        setFirst_name(value);
+        break;
+      case 'last_name':
+        setLast_name(value);
+        break;
+      case 'city':
+        setCity(value);
+        break;
+      case 'country':
+        setCountry(value);
+        break;
+      case 'postal_code':
+        setPostal_code(value);
+        break;
+      case 'about_me':
+        setAbout_me(value);
+        break;
+      default:
+        break;
+    }
+  
   };
 
   const handleCloseModal = () => {
@@ -74,7 +109,15 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProfile(updatedProfileData));
+    const formData = new FormData();
+    formData.append('username', username);  
+    formData.append('email', email);
+    formData.append('first_name', first_name);
+    formData.append('last_name', last_name);
+    formData.append('city', city);
+    formData.append('country', country);
+    formData.append('postal_code', postal_code);
+    formData.append('about_me', about_me);
     setShowModal(false);
   };
 
@@ -438,9 +481,8 @@ const ProfilePage = () => {
 				  <div className="form-outline mb-4">
                         <input
                           type="username"
-						//   placeholder="Enter Username"
-						  value={updatedProfileData.username}
-              onChange={handleInputChange}
+            						  value={username}
+                          onChange={(e) => handleInputChange(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example1">
@@ -452,8 +494,8 @@ const ProfilePage = () => {
                         <input
                           type="email"
 						//   placeholder="Enter Email"
-						  value={updatedProfileData.email}
-              onChange={handleInputChange}
+						  value={email}
+              onChange={(e) => handleInputChange(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example2">
@@ -465,8 +507,8 @@ const ProfilePage = () => {
                         <input
                           type="name"
 						//   placeholder="Enter First Name"
-						  value={updatedProfileData.first_name}
-						  onChange={handleInputChange}
+						  value={first_name}
+						  onChange={(e) => handleInputChange(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example2">
@@ -479,8 +521,8 @@ const ProfilePage = () => {
                         <input
                           type="name"
 						//   placeholder="Enter Last Name"
-						  value={updatedProfileData.last_name}
-						  onChange={handleInputChange}
+						  value={last_name}
+						  onChange={(e) => handleInputChange(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example1">
@@ -494,8 +536,8 @@ const ProfilePage = () => {
               <div className="form-outline">
                 <input
                 type="text"
-					      value={updatedProfileData.city}
-					      onChange={handleInputChange}
+					      value={city}
+					      onChange={(e) => handleInputChange(e)}
                 className="form-control"
                 />
                 <label className="form-label" htmlFor="form3Example3">
@@ -507,8 +549,8 @@ const ProfilePage = () => {
               <div className="form-outline">
                 <input
                   type="text"
-					        value={updatedProfileData.country}
-					        onChange={handleInputChange}
+					        value={country}
+					        onChange={(e) => handleInputChange(e)}
                   className="form-control"
                 />
                 <label className="form-label" htmlFor="form3Example3">
@@ -520,8 +562,8 @@ const ProfilePage = () => {
               <div className="form-outline">
                 <textarea
                   type="text"
-					        value={updatedProfileData.about_me}
-					        onChange={handleInputChange}
+					        value={about_me}
+					        onChange={(e) => handleInputChange(e)}
                   className="form-control"
                 />
                 <label className="form-label" htmlFor="form3Example3">

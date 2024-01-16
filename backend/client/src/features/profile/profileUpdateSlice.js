@@ -43,6 +43,14 @@ export const updateProfile = createAsyncThunk(
 );
 
 const initialState = {
+  username: '',
+  email: '',
+  first_name: '',
+  last_name: '',
+  city: '',
+  country: '',
+  postal_code: '',
+  about_me: '',
   updatedProfile: null,
   isLoading: false,
   isError: false,
@@ -67,6 +75,15 @@ const profileUpdateSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
+        const { username, email, first_name, last_name, city, country, postal_code, about_me } = action.payload;
+        state.username = username;
+        state.email = email;
+        state.first_name = first_name;
+        state.last_name = last_name;
+        state.city = city;
+        state.country = country;
+        state.postal_code = postal_code;  
+        state.about_me = about_me;
         state.isLoading = false;
         state.isSuccess = true;
         state.updatedProfile = action.payload;

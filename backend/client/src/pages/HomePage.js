@@ -68,7 +68,7 @@ const HomePage = () => {
                 <div className="col-lg-8">
                   <div className="intro-body">
                   {/* <div className='overlay overlay-a'/> */}
-               <p className="intro-title-top">
+               <p className="intro-title-top text-white">
                 {property.city}, {property.country}
               </p>
               <h1 className="intro-title mb-4 text-bg-light ">

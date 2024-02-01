@@ -160,9 +160,9 @@ const ProfilePage = () => {
                   <p className="text-muted font-size-sm">
                    {profile?.city || ''}, {profile?.country || ''}
                   </p>
-                  <button className="btn btn-primary mr-4">Follow</button>
+                  {/* <button className="btn btn-primary mr-4">Follow</button>
                   {" "}
-                  <button className="btn btn-outline-primary">Message</button>
+                  <button className="btn btn-outline-primary">Message</button> */}
                 </div>
               </div>
             </div>

@@ -114,6 +114,17 @@ const ContactAgent = () => {
                           type="text"
                           className="form-control form-control-lg form-control-a"
                           id="inputName"
+                          placeholder="Subject *"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-12 mb-1">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control form-control-lg form-control-a"
+                          id="inputName"
                           placeholder="Name *"
                           required=""
                         />

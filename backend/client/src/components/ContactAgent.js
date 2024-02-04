@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGetPropertyDetailsQuery, useGetAllAgentsQuery } from '../services/apiProperties';
 import SpinnerComponent from '../components/SpinnerComponent';
-
+import { useDispatch, useSelector } from 'react-redux';
 import {toast} from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import { sendEnquiry, resetStatus } from '../features/customer/customerContactSlice';
 
 
 const ContactAgent = () => {
   const { slug } = useParams();
   const { data: property, error, isLoading } = useGetPropertyDetailsQuery(slug);
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.customerContact.status);
+  const successMessage = useSelector((state) => state.customerContact.successMessage);
 
   const agentUsername = property?.user;
 
@@ -23,8 +27,25 @@ const ContactAgent = () => {
   const agentPhone = agentDetails?.phone_number|| '';
   const agentDescription = agentDetails?.about_me || '';
   const agentImage = agentDetails?.profile_photo || '';
-
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
   console.log(agentFullName);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(sendEnquiry(formData));
+  };
 
   if (isLoading) {
     return <p><SpinnerComponent/></p>;
@@ -106,7 +127,9 @@ const ContactAgent = () => {
             </div>
             <div className="col-md-12 col-lg-4">
               <div className="property-contact">
-                <form className="form-a">
+              {status === 'succeeded' && <p>{successMessage}</p>}
+              {status === 'failed' && <p>Error occurred. Please try again.</p>}
+                <form onSubmit={handleSubmit} className="form-a">
                   <div className="row">
                     <div className="col-md-12 mb-1">
                       <div className="form-group">

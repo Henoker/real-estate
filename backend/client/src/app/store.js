@@ -3,6 +3,7 @@ import { api } from '../services/apiProperties';
 import authReducer from "../features/auth/authSlice";
 import profileReducer from "../features/profile/profileSlice";
 import profileUpdateReducer from "../features/profile/profileUpdateSlice";
+import customerContactReducer from "../features/customer/customerContactSlice";
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     profile: profileReducer,
     profileUpdate: profileUpdateReducer,
+    customerContact: customerContactReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

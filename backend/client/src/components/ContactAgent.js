@@ -42,10 +42,17 @@ const ContactAgent = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(sendEnquiry(formData));
+    await dispatch(sendEnquiry(formData));
+    if (status === 'succeeded') {
+      toast.success(successMessage);
+    }
+    else if (status === 'failed') {
+      toast.error('Error occurred. Please try again.');
+    }
   };
+  
 
   if (isLoading) {
     return <p><SpinnerComponent/></p>;
@@ -127,8 +134,8 @@ const ContactAgent = () => {
             </div>
             <div className="col-md-12 col-lg-4">
               <div className="property-contact">
-              {status === 'succeeded' && <p>{successMessage}</p>}
-              {status === 'failed' && <p>Error occurred. Please try again.</p>}
+              {/* {status === 'succeeded' && <p>{successMessage}</p>} */}
+              {/* {status === 'failed' && <p>Error occurred. Please try again.</p>} */}
                 <form onSubmit={handleSubmit} className="form-a">
                   <div className="row">
                     <div className="col-md-12 mb-1">

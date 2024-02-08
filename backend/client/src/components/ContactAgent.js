@@ -13,6 +13,7 @@ const ContactAgent = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.customerContact.status);
   const successMessage = useSelector((state) => state.customerContact.successMessage);
+  const isContactLoading = status === 'loading'
 
   const agentUsername = property?.user;
 
@@ -186,9 +187,17 @@ const ContactAgent = () => {
                       </div>
                     </div>
                     <div className="col-md-12 mt-3">
-                      <button type="submit" className="btn btn-a">
+
+                    {isContactLoading ? (
+                      <div className='spinner-border text-primary' role='status'>
+						          <span className='visually-hidden'>Loading...</span>
+					          </div>
+				) : (
+					<button type="submit" className="btn btn-a">
                         Send Message
-                      </button>
+          </button>
+				)}
+                      
                     </div>
                   </div>
                 </form>

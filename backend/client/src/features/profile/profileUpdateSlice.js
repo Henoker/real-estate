@@ -23,7 +23,7 @@ export const updateProfile = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `http://localhost:8000/api/v1/profile/update/${username}/`, 
+        `http://localhost:8000/api/v1/profile/update/${username}/`,
         updatedProfileData,
         config
       );
@@ -33,7 +33,9 @@ export const updateProfile = createAsyncThunk(
       return updatedProfile;
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
 
@@ -43,14 +45,14 @@ export const updateProfile = createAsyncThunk(
 );
 
 const initialState = {
-  username: '',
-  email: '',
-  first_name: '',
-  last_name: '',
-  city: '',
-  country: '',
-  postal_code: '',
-  about_me: '',
+  username: "",
+  email: "",
+  first_name: "",
+  last_name: "",
+  city: "",
+  country: "",
+  postal_code: "",
+  about_me: "",
   updatedProfile: null,
   isLoading: false,
   isError: false,
@@ -75,18 +77,11 @@ const profileUpdateSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
-        const { username, email, first_name, last_name, city, country, postal_code, about_me } = action.payload;
-        state.username = username;
-        state.email = email;
-        state.first_name = first_name;
-        state.last_name = last_name;
-        state.city = city;
-        state.country = country;
-        state.postal_code = postal_code;  
-        state.about_me = about_me;
         state.isLoading = false;
         state.isSuccess = true;
         state.updatedProfile = action.payload;
+        // Don't update individual fields here - let profileSlice handle it
+        state.message = "Profile updated successfully!";
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
